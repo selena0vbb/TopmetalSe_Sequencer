@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="topMetalSequencer_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="topMetalSequencer_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,119.767 ns"></ZoomEndTime>
+      <Cursor1Time time="85.521 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="189"></NameColumnWidth>
+      <ValueColumnWidth column_width="113"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="24" />
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/CLK">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/RESET">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/led">
+      <obj_property name="ElementShortName">led[15:0]</obj_property>
+      <obj_property name="ObjectShortName">led[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/ROW_SR_EN">
+      <obj_property name="ElementShortName">ROW_SR_EN</obj_property>
+      <obj_property name="ObjectShortName">ROW_SR_EN</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/COL_SR_EN">
+      <obj_property name="ElementShortName">COL_SR_EN</obj_property>
+      <obj_property name="ObjectShortName">COL_SR_EN</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/ROW_SR_EN_BUF">
+      <obj_property name="ElementShortName">ROW_SR_EN_BUF</obj_property>
+      <obj_property name="ObjectShortName">ROW_SR_EN_BUF</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/COL_SR_EN_BUF">
+      <obj_property name="ElementShortName">COL_SR_EN_BUF</obj_property>
+      <obj_property name="ObjectShortName">COL_SR_EN_BUF</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/ROW_IN">
+      <obj_property name="ElementShortName">ROW_IN</obj_property>
+      <obj_property name="ObjectShortName">ROW_IN</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/COL_IN">
+      <obj_property name="ElementShortName">COL_IN</obj_property>
+      <obj_property name="ObjectShortName">COL_IN</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/ROW_SEL">
+      <obj_property name="ElementShortName">ROW_SEL[99:0]</obj_property>
+      <obj_property name="ObjectShortName">ROW_SEL[99:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/COL_SEL">
+      <obj_property name="ElementShortName">COL_SEL[99:0]</obj_property>
+      <obj_property name="ObjectShortName">COL_SEL[99:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DATA_OUT_ROW">
+      <obj_property name="ElementShortName">DATA_OUT_ROW</obj_property>
+      <obj_property name="ObjectShortName">DATA_OUT_ROW</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DATA_OUT_COL">
+      <obj_property name="ElementShortName">DATA_OUT_COL</obj_property>
+      <obj_property name="ObjectShortName">DATA_OUT_COL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/ROW_DAT">
+      <obj_property name="ElementShortName">ROW_DAT</obj_property>
+      <obj_property name="ObjectShortName">ROW_DAT</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/COL_DAT">
+      <obj_property name="ElementShortName">COL_DAT</obj_property>
+      <obj_property name="ObjectShortName">COL_DAT</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DATA_IN">
+      <obj_property name="ElementShortName">DATA_IN[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_IN[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DATA_VAL">
+      <obj_property name="ElementShortName">DATA_VAL</obj_property>
+      <obj_property name="ObjectShortName">DATA_VAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SPI_OUT">
+      <obj_property name="ElementShortName">SPI_OUT</obj_property>
+      <obj_property name="ObjectShortName">SPI_OUT</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SYNC">
+      <obj_property name="ElementShortName">SYNC</obj_property>
+      <obj_property name="ObjectShortName">SYNC</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SCLK">
+      <obj_property name="ElementShortName">SCLK</obj_property>
+      <obj_property name="ObjectShortName">SCLK</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/CLK_period">
+      <obj_property name="ElementShortName">CLK_period</obj_property>
+      <obj_property name="ObjectShortName">CLK_period</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SCLK_BUF">
+      <obj_property name="ElementShortName">SCLK_BUF</obj_property>
+      <obj_property name="ObjectShortName">SCLK_BUF</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/DATA_OUT">
+      <obj_property name="ElementShortName">DATA_OUT</obj_property>
+      <obj_property name="ObjectShortName">DATA_OUT</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/BIT_NUM">
+      <obj_property name="ElementShortName">BIT_NUM</obj_property>
+      <obj_property name="ObjectShortName">BIT_NUM</obj_property>
+   </wvobject>
+</wave_config>
