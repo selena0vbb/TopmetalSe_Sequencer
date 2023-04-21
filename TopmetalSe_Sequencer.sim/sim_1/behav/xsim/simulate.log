@@ -1,6 +1,0 @@
-Time resolution is 1 ps
-ERROR: Index -1 out of bound 31 downto 0
-Time: 645 ns  Iteration: 3  Process: /topMetalSequencer_tb/DUT/WR_PROCESS
-  File: /home/damic/HDD/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/new/DAC_SPI.vhd
-
-HDL Line: /home/damic/HDD/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/new/DAC_SPI.vhd:84

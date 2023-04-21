@@ -67,6 +67,33 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
 -- );
 --  END COMPONENT;
 
+
+  COMPONENT tmSe_leader PORT(
+        INTERN_CLK     : IN std_logic; --Internal 100 MHz Clock
+   
+        EXTERN_CLK     : IN std_logic; --External 1-25 MHz Clock 
+        RESET          : IN std_logic;
+    
+         USB_SERIAL      : IN std_logic;
+        --OUTPUTS
+        LA_ROW_SHIFT    : OUT std_logic;
+        LA_ROW_DAT_IN   : OUT std_logic;
+        
+        LA_COL_SHIFT    : OUT std_logic;
+        LA_COL_DAT_IN   : OUT std_logic;
+        
+        SPI_OUT         : OUT std_logic;
+        SPI_SYNC        : OUT std_logic;
+        SPI_SCLK        : OUT std_logic
+  
+  
+  
+  
+  
+  ); 
+  END COMPONENT;
+  
+
   COMPONENT clock_sequencer
        PORT(
         CLK     : IN std_logic;
@@ -99,91 +126,128 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
   END COMPONENT;
   
   COMPONENT shift_register
-        PORT(
-          CLK   : IN std_logic;
-          ENA   : IN std_logic;
-          RST : IN std_logic;
-          DATA_IN:IN std_logic;
-          
-          DATA_OUT: OUT std_logic;
-          COL_SEL : OUT std_logic_vector(99 downto 0)
-        );
+    PORT(
+      CLK   : IN std_logic;
+      ENA   : IN std_logic;
+      RST : IN std_logic;
+      DATA_IN:IN std_logic;
+      
+      DATA_OUT: OUT std_logic;
+      COL_SEL : OUT std_logic_vector(99 downto 0)
+    );
   END COMPONENT;
         
+    
+    --Inputs
+    SIGNAL INTERN_CLK     : std_logic                     := '0';
+    SIGNAL EXTERN_CLK     : std_logic                     := '0';
+    SIGNAL RESET         : std_logic                     := '0';
+    
+    SIGNAL led         : std_logic_vector(15 DOWNTO 0);
+    
+    -- Clock period definitions
+    CONSTANT INTERN_CLK_period     : time := 10 ns;
+    CONSTANT EXTERN_CLK_period     : time := 50 ns;
+    
+    SIGNAL ROW_SR_EN    : std_logic   := '0';
+    SIGNAL COL_SR_EN   : std_logic    := '0'; 
+    
+    SIGNAL ROW_SR_EN_BUF    : std_logic;
+    SIGNAL COL_SR_EN_BUF   : std_logic; 
+    
+    SIGNAL ROW_IN     : std_logic;
+    SIGNAL COL_IN     : std_logic;
+    
+    SIGNAL ROW_SEL    : std_logic_vector (99 downto 0);
+    SIGNAL COL_SEL    : std_logic_vector (99 downto 0);
+    
+    SIGNAL DATA_OUT_ROW   : std_logic;
+    SIGNAL DATA_OUT_COL   : std_logic;
+    
+    SIGNAL ROW_DAT        : std_logic;
+    SIGNAL COL_DAT        : std_logic;
+    
+    
+    SIGNAL DATA_IN        : std_logic_vector(31 downto 0) := (31 downto 10 => '1', others => '0');
+    SIGNAL DATA_VAL       : std_logic;
+    SIGNAL SPI_OUT       : std_logic := '0';
+    SIGNAL SYNC       : std_logic;
+    SIGNAL SCLK           : std_logic;
+    
+    SIGNAL USB_SERIAL : std_logic := '1';
+    
+    
 
-  --Inputs
-  SIGNAL CLK           : std_logic                     := '0';
-  SIGNAL RESET         : std_logic                     := '0';
+  constant c_CLK_PERIOD : time := 10ns;
+  constant C_BIT_PERIOD: time := 104167 ns;
 
-  SIGNAL led         : std_logic_vector(15 DOWNTO 0);
+  procedure UART_WRITE_BYTE(
+  i_Data_In : in std_logic_vector(7 downto 0);
+  signal o_Serial : out std_logic) is
+  begin
+  -- send start bit
+    o_Serial <= '0';
+    wait for c_BIT_PERIOD;
+    
+  -- send Data Byte
+    for ii in 0 to 7 loop
+        o_serial <= i_Data_in(ii);
+        wait for c_BIT_PERIOD;
+     
+    end loop;
+  -- send stop bit
+    o_Serial<= '1';
+    wait for c_BIT_PERIOD;
+    
+  end UART_WRITE_BYTE;
+  
 
-  -- Clock period definitions
-  CONSTANT CLK_period     : time := 10 ns;
-  
-  SIGNAL ROW_SR_EN    : std_logic   := '0';
-  SIGNAL COL_SR_EN   : std_logic    := '0'; 
-  
-  SIGNAL ROW_SR_EN_BUF    : std_logic;
-  SIGNAL COL_SR_EN_BUF   : std_logic; 
-  
-  SIGNAL ROW_IN     : std_logic;
-  SIGNAL COL_IN     : std_logic;
-  
-  SIGNAL ROW_SEL    : std_logic_vector (99 downto 0);
-  SIGNAL COL_SEL    : std_logic_vector (99 downto 0);
-  
-  SIGNAL DATA_OUT_ROW   : std_logic;
-  SIGNAL DATA_OUT_COL   : std_logic;
-  
-  SIGNAL ROW_DAT        : std_logic;
-  SIGNAL COL_DAT        : std_logic;
-
-
-  SIGNAL DATA_IN        : std_logic_vector(31 downto 0) := (31 downto 10 => '1', others => '0');
-  SIGNAL DATA_VAL       : std_logic;
-  SIGNAL SPI_OUT       : std_logic;
-  SIGNAL SYNC       : std_logic;
-  SIGNAL SCLK           : std_logic;
 
 BEGIN
 
-  CLK_process : PROCESS
+  INTERN_CLK_process : PROCESS
   BEGIN
-    CLK <= '0';
-    WAIT FOR CLK_period/2;
-    CLK <= '1';
-    WAIT FOR CLK_period/2;
+    INTERN_CLK <= '0';
+    WAIT FOR INTERN_CLK_period/2;
+    INTERN_CLK <= '1';
+    WAIT FOR INTERN_CLK_period/2;
+  END PROCESS;
+  
+  EXTERN_CLK_process: PROCESS
+   BEGIN
+    EXTERN_CLK <= '0';
+    WAIT FOR EXTERN_CLK_period/2;
+    EXTERN_CLK <= '1';
+    WAIT FOR EXTERN_CLK_period/2;
   END PROCESS;
 
   -- Instantiate the Device Under Test (DUT)
+  DUT : tmSe_leader PORT MAP(
   
-  DUT: DAC_SPI PORT MAP(
-    CLK_IN      => CLK,
-    RESET       => RESET,
-    DATA_IN     => DATA_IN,
-    DATA_VAL    => DATA_VAL,
+    INTERN_CLK =>INTERN_CLK,
     
-    DATA_OUT     => SPI_OUT,
-    SYNC_OUT      => SYNC,
-    SCLK         => SCLK 
- 
+    EXTERN_CLK => EXTERN_CLK,    
+    RESET => RESET, 
+    
+    USB_SERIAL  => USB_SERIAL,
+    --OUTPUTS
+    LA_ROW_SHIFT   => ROW_SR_EN_BUF, 
+    LA_ROW_DAT_IN => ROW_DAT,
+    
+    LA_COL_SHIFT => COL_SR_EN_BUF,
+    LA_COL_DAT_IN  => COL_DAT,
+    
+    SPI_OUT => SPI_OUT,
+    SPI_SYNC => SYNC,
+    SPI_SCLK =>SCLK
+    
   );
   
   
-  CLK_SEQ: clock_sequencer PORT MAP (
-    CLK           => CLK,
-    RESET         => RESET,
-    
-    LA_ROW_SHIFT  => ROW_SR_EN_BUF,
-    LA_COL_SHIFT  => COL_SR_EN_BUF,
-    ROW_DAT_IN    => ROW_DAT,
-    COL_DAT_IN    => COL_DAT
-  );
-
 
     -- Insantiate Row and Column Shift Registers
    SR_ROW: shift_register PORT MAP(
-        CLK     => CLK,
+        CLK     => EXTERN_CLK,
         ENA     => ROW_SR_EN_BUF,
         RST   =>RESET,
         DATA_IN => ROW_DAT,
@@ -193,7 +257,7 @@ BEGIN
  
     );
     SR_COL: shift_register PORT MAP(
-        CLK     => CLK,
+        CLK     => EXTERN_CLK,
         ENA     => COL_SR_EN_BUF,
         RST   =>RESET,
         DATA_IN => COL_DAT,
@@ -225,27 +289,23 @@ BEGIN
  stim_proc : PROCESS
  BEGIN
     -- hold reset state for 100 ns.
-    WAIT FOR CLK_PERIOD;
+    WAIT FOR EXTERN_CLK_PERIOD;
     RESET <= '1';
-    WAIT FOR CLK_PERIOD;
+    WAIT FOR EXTERN_CLK_PERIOD;
     RESET <= '0';
-    WAIT FOR CLK_PERIOD;
-    ROW_IN <= '1';
-    COL_IN <= '1';
-    ROW_SR_EN<='1';
-    COL_SR_EN<='1';
-    WAIT FOR CLK_PERIOD;
-    ROW_IN <= '0';
-    COL_IN <= '0';
-    ROW_SR_EN<='0';
-    WAIT FOR 3*CLK_PERIOD;
-    COL_SR_EN <='0';
+    WAIT FOR EXTERN_CLK_PERIOD;
+    UART_WRITE_BYTE("11101101", USB_SERIAL);
+
+    WAIT FOR 2ms;
+
+    UART_WRITE_BYTE("11101101", USB_SERIAL);
     
-    DATA_VAL<= '1';
-    WAIT FOR CLK_PERIOD;
-    DATA_VAL <='0';
+    WAIT FOR 2ms;
+    UART_WRITE_BYTE("11101101", USB_SERIAL);
+    WAIT FOR 1ms;
+    UART_WRITE_BYTE("11101101", USB_SERIAL);
     
-    WAIT FOR 10000*CLK_PERIOD;
+    WAIT;
     
 
     

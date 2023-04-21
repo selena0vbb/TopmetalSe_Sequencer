@@ -47,48 +47,107 @@ end DAC_SPI;
 architecture Behavioral of DAC_SPI is
     SIGNAL CLK_BUF  : std_logic;
     SIGNAL DAT_REG  : std_logic_vector(31 downto 0);
+    SIGNAL REG_VAL  : std_logic;
+    
     SIGNAL SCLK_BUF : std_logic := '0';
     
     SIGNAL BIT_NUM  : integer  := 31;
     
     SIGNAL SYNC_BUF        : std_logic := '1'; -- High is OFF
     
+    SIGNAL CLK_COUNT        : integer := 0;
+    
+    
+    TYPE tx_state IS (IDLE, WX_OUT);
+    SIGNAL txstate      : tx_state;
+    
+    TYPE rx_state IS (IDLE, RX_IN, RX_WAIT);
+    SIGNAL rxstate      : rx_state;
+    
 BEGIN
     CLK_BUF<= CLK_IN;
     SCLK <= SCLK_BUF;
     SYNC_OUT <= SYNC_BUF;
-    DATA_STORE : process (CLK_IN, RESET)
+    
+
+    DATA_RX_PROC : PROCESS(CLK_BUF, RESET)
     BEGIN
         IF RESET = '1' THEN
-            DAT_REG <= (others => '0');
-        ELSIF rising_edge(CLK_IN) THEN
-            IF DATA_VAL = '1' THEN
-                DAT_REG <= DATA_IN;
-            END IF;
+            rxstate <= IDLE;
+            REG_VAL <= '0';
+            DAT_REG<= (others => '0');
+            
+        ELSIF RISING_EDGE(CLK_BUF) THEN
+            CASE rxstate is
+                WHEN IDLE =>
+                    REG_VAL <= '0';
+                    --SYNC_BUF <= '1';
+                    IF DATA_VAL = '1' THEN
+                        rxstate <= RX_IN;
+                    END IF;
+                WHEN RX_IN =>
+                    DAT_REG <= DATA_IN;
+                    REG_VAL <= '1';
+                    IF REG_VAL = '1' THEN
+                        rxstate <= RX_WAIT;
+                    END IF;
+                WHEN RX_WAIT =>
+                --Just a Buffer
+                    IF txstate = WX_OUT THEN
+                        rxstate <= IDLE;    
+                    END IF;
+            END CASE;
         END IF;
-              
+    
     END PROCESS;
     
+    
+    DATA_WX_PROC : PROCESS(SCLK_BUF, RESET)
+    BEGIN
+        IF RESET = '1' THEN
+            txstate <= IDLE;
+            SYNC_BUF <='1';
+            BIT_NUM <= 31;
+            DATA_OUT <= '0';
+            
+        ELSIF RISING_EDGE(SCLK_BUF) THEN
+            CASE txstate IS
+            
+            WHEN IDLE =>
+                DATA_OUT<= '0';
+                BIT_NUM <= 31;
+                IF REG_VAL = '1' THEN
+                    txstate <= WX_OUT;
+                    
+                END IF;
+            WHEN WX_OUT =>
+                SYNC_BUF <= '0';
+                DATA_OUT <= DAT_REG(BIT_NUM);
+                BIT_NUM <= BIT_NUM -1;
+                IF BIT_NUM = 0 THEN
+                    txstate <= IDLE;
+                    SYNC_BUF <= '1';
+                
+                END IF;             
+            END CASE;
+        END IF;     
+    END PROCESS;
+    
+
     
     SCLK_GEN : PROCESS(CLK_BUF, RESET)
     BEGIN
         --if RESET =  '1' THEN
         --SCLK <= '0';
         IF RISING_EDGE(CLK_BUF) THEN
-            SCLK_BUF <= NOT SCLK_BUF;
+            CLK_COUNT <= CLK_COUNT +1;
+            IF CLK_COUNT = 3 THEN
+                SCLK_BUF <= NOT SCLK_BUF;
+                CLK_COUNT<=0;
+            END IF;
+        
         END IF;
     END PROCESS;        
     
-    WR_PROCESS : PROCESS (SCLK_BUF, RESET)
-    BEGIN
-        IF RESET = '1' THEN
-            BIT_NUM <= 31;
-            
-        ELSIF RISING_EDGE(SCLK_BUF) THEN
-            
-            DATA_OUT <= DATA_IN(BIT_NUM);
-            BIT_NUM <= BIT_NUM -1;
-        END IF;
-     END PROCESS;      
 
 end Behavioral;

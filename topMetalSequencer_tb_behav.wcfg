@@ -11,19 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,119.767 ns"></ZoomEndTime>
-      <Cursor1Time time="85.521 ns"></Cursor1Time>
+      <ZoomStartTime time="4,031,294.030 ns"></ZoomStartTime>
+      <ZoomEndTime time="4,031,565.431 ns"></ZoomEndTime>
+      <Cursor1Time time="4,031,401.430 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="189"></NameColumnWidth>
-      <ValueColumnWidth column_width="113"></ValueColumnWidth>
+      <ValueColumnWidth column_width="93"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="24" />
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/CLK">
-      <obj_property name="ElementShortName">CLK</obj_property>
-      <obj_property name="ObjectShortName">CLK</obj_property>
-   </wvobject>
+   <WVObjectSize size="28" />
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/RESET">
       <obj_property name="ElementShortName">RESET</obj_property>
       <obj_property name="ObjectShortName">RESET</obj_property>
@@ -100,20 +96,40 @@
       <obj_property name="ElementShortName">SCLK</obj_property>
       <obj_property name="ObjectShortName">SCLK</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/topMetalSequencer_tb/CLK_period">
-      <obj_property name="ElementShortName">CLK_period</obj_property>
-      <obj_property name="ObjectShortName">CLK_period</obj_property>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/DAC_DAT_REG">
+      <obj_property name="ElementShortName">DAC_DAT_REG[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DAC_DAT_REG[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SCLK_BUF">
-      <obj_property name="ElementShortName">SCLK_BUF</obj_property>
-      <obj_property name="ObjectShortName">SCLK_BUF</obj_property>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/DAC_DAT_VAL">
+      <obj_property name="ElementShortName">DAC_DAT_VAL</obj_property>
+      <obj_property name="ObjectShortName">DAC_DAT_VAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/DATA_OUT">
-      <obj_property name="ElementShortName">DATA_OUT</obj_property>
-      <obj_property name="ObjectShortName">DATA_OUT</obj_property>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/DAC_DAT_REG">
+      <obj_property name="ElementShortName">DAC_DAT_REG[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DAC_DAT_REG[31:0]</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/BIT_NUM">
-      <obj_property name="ElementShortName">BIT_NUM</obj_property>
-      <obj_property name="ObjectShortName">BIT_NUM</obj_property>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/DAC_DAT_VAL">
+      <obj_property name="ElementShortName">DAC_DAT_VAL</obj_property>
+      <obj_property name="ObjectShortName">DAC_DAT_VAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/USB_SERIAL">
+      <obj_property name="ElementShortName">USB_SERIAL</obj_property>
+      <obj_property name="ObjectShortName">USB_SERIAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/EXTERN_CLK">
+      <obj_property name="ElementShortName">EXTERN_CLK</obj_property>
+      <obj_property name="ObjectShortName">EXTERN_CLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/INTERN_CLK">
+      <obj_property name="ElementShortName">INTERN_CLK</obj_property>
+      <obj_property name="ObjectShortName">INTERN_CLK</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/bridgeState">
+      <obj_property name="ElementShortName">bridgeState</obj_property>
+      <obj_property name="ObjectShortName">bridgeState</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/UART_RX_VALID">
+      <obj_property name="ElementShortName">UART_RX_VALID</obj_property>
+      <obj_property name="ObjectShortName">UART_RX_VALID</obj_property>
    </wvobject>
 </wave_config>

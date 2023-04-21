@@ -1,12 +1,14 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-1032,-578",
+   "Default View_TopLeft":"-777,-448",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-levelinfo -pg 1 -470 -40 240
-pagesize -pg 1 -db -bbox -sgen -470 -550 240 190
+preplace inst tmSe_leader_0 -pg 1 -lvl 1 -x 140 -y 50 -defaultsOSRD
+preplace inst DAC_SPI_0 -pg 1 -lvl 1 -x 140 -y -260 -defaultsOSRD
+levelinfo -pg 1 -10 140 290
+pagesize -pg 1 -db -bbox -sgen -10 -350 290 140
 "
 }
 0
