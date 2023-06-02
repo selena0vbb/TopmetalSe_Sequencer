@@ -70,10 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_param synth.incrementalSynthesisCache ./.Xil/Vivado-2464171-fedora/incrSyn
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
+set_param xicom.use_bs_reader 1
+set_param chipscope.maxJobs 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -109,6 +107,8 @@ read_xdc /home/damic/HDD/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/constrs_
 set_property used_in_implementation false [get_files /home/damic/HDD/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/constrs_1/imports/new/topmetal-fpga-constraints.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental /home/damic/HDD/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/utils_1/imports/synth_1/tmSe_leader.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

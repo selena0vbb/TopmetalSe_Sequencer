@@ -74,38 +74,34 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
         EXTERN_CLK     : IN std_logic; --External 1-25 MHz Clock 
         RESET          : IN std_logic;
     
-         USB_SERIAL      : IN std_logic;
+        USB_SERIAL      : IN std_logic;
+           
+        SA_COL          : IN STD_LOGIC_VECTOR( 2 downto 0);
+        SA_ROW          : IN STD_LOGIC_VECTOR( 2 downto 0);
+    
+        
         --OUTPUTS
         LA_ROW_SHIFT    : OUT std_logic;
         LA_ROW_DAT_IN   : OUT std_logic;
+        LA_ROW_RESET    : OUT std_logic;
+        LA_ROW_CLK      : OUT std_logic;
         
         LA_COL_SHIFT    : OUT std_logic;
         LA_COL_DAT_IN   : OUT std_logic;
+        LA_COL_RESET    : OUT std_logic;
+        LA_COL_CLK      : OUT std_logic;
         
-        SPI_OUT         : OUT std_logic;
-        SPI_SYNC        : OUT std_logic;
-        SPI_SCLK        : OUT std_logic
-  
-  
-  
-  
+        --Below controls small array(clocking and single pixel selection)
+        SA_ROW_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+        SA_COL_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+        
+        SPI_OUT         : OUT std_logic; --PMOD
+        SPI_SYNC        : OUT std_logic; --PMOD
+        SPI_SCLK        : OUT std_logic  --PMOD
+    
+    --CLK_OUT         : OUT std_logic
   
   ); 
-  END COMPONENT;
-  
-
-  COMPONENT clock_sequencer
-       PORT(
-        CLK     : IN std_logic;
-        RESET   : IN std_logic;
-
-        --OUTPUTS
-        LA_ROW_SHIFT    : OUT std_logic;
-        LA_COL_SHIFT    : OUT std_logic;
-        ROW_DAT_IN      : OUT std_logic;
-        COL_DAT_IN      : OUT std_logic
-    
-        );
   END COMPONENT;
   
   COMPONENT DAC_SPI
@@ -176,7 +172,19 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
     
     SIGNAL USB_SERIAL : std_logic := '1';
     
+    SIGNAL SA_ROW_IN : STD_LOGIC_VECTOR (2 downto 0);
+    SIGNAL SA_COL_IN : STD_LOGIC_VECTOR (2 downto 0);
     
+    SIGNAL SA_ROW_OUT: STD_LOGIC_VECTOR (2 downto 0);
+    SIGNAL SA_COL_OUT : STD_LOGIC_VECTOR (2 downto 0);
+    
+    
+    
+    SIGNAL SR_RESET: std_logic;
+    SIGNAL SR_R_CLK  : std_logic;
+    SIGNAL SR_C_CLK  : std_logic;
+    
+    SIGNAL SR_CLK_BUF: std_logic;
 
   constant c_CLK_PERIOD : time := 10ns;
   constant C_BIT_PERIOD: time := 104167 ns;
@@ -230,16 +238,29 @@ BEGIN
     RESET => RESET, 
     
     USB_SERIAL  => USB_SERIAL,
+    SA_COL => SA_COL_IN,
+    SA_ROW => SA_ROW_IN,
+    
+    
     --OUTPUTS
     LA_ROW_SHIFT   => ROW_SR_EN_BUF, 
     LA_ROW_DAT_IN => ROW_DAT,
+    LA_ROW_RESET => SR_RESET,
+    LA_ROW_CLK  => SR_R_CLK,
+    
     
     LA_COL_SHIFT => COL_SR_EN_BUF,
     LA_COL_DAT_IN  => COL_DAT,
+    LA_COL_RESET => SR_RESET,
+    LA_COL_CLK => SR_C_CLK,
     
     SPI_OUT => SPI_OUT,
     SPI_SYNC => SYNC,
-    SPI_SCLK =>SCLK
+    SPI_SCLK =>SCLK,
+    
+    SA_COL_OUT => SA_COL_OUT,
+    SA_ROW_OUT=>SA_ROW_OUT
+    
     
   );
   
@@ -247,9 +268,9 @@ BEGIN
 
     -- Insantiate Row and Column Shift Registers
    SR_ROW: shift_register PORT MAP(
-        CLK     => EXTERN_CLK,
+        CLK     => SR_R_CLK,
         ENA     => ROW_SR_EN_BUF,
-        RST   =>RESET,
+        RST   =>SR_RESET,
         DATA_IN => ROW_DAT,
         
         DATA_OUT => DATA_OUT_ROW,
@@ -257,9 +278,9 @@ BEGIN
  
     );
     SR_COL: shift_register PORT MAP(
-        CLK     => EXTERN_CLK,
+        CLK     => SR_C_CLK,
         ENA     => COL_SR_EN_BUF,
-        RST   =>RESET,
+        RST   =>SR_RESET,
         DATA_IN => COL_DAT,
         
         DATA_OUT => DATA_OUT_COL,
@@ -286,6 +307,7 @@ BEGIN
 
 
  --Stimulus process
+--SR_CLK_BUF <= SR_CLK_BUF;
  stim_proc : PROCESS
  BEGIN
     -- hold reset state for 100 ns.
@@ -301,12 +323,20 @@ BEGIN
     UART_WRITE_BYTE("11101101", USB_SERIAL);
     
     WAIT FOR 2ms;
+    RESET<='1';
     UART_WRITE_BYTE("11101101", USB_SERIAL);
     WAIT FOR 1ms;
+    RESET<='0';
     UART_WRITE_BYTE("11101101", USB_SERIAL);
     
-    WAIT;
-    
+    WAIT FOR 1ms;
+    UART_WRITE_BYTE("11001101", USB_SERIAL);
+    WAIT FOR 1ms;
+    UART_WRITE_BYTE("11001101", USB_SERIAL);
+    WAIT FOR 1ms;
+    UART_WRITE_BYTE("11001101", USB_SERIAL);
+    WAIT FOR 1ms;
+    UART_WRITE_BYTE("11001101", USB_SERIAL);
 
     
 END PROCESS;

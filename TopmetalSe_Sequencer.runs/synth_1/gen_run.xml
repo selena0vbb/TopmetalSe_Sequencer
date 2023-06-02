@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1682099671">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1685665769" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/tmSe_leader.dcp">
+  <File Type="VDS-TIMINGSUMMARY" Name="tmSe_leader_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="tmSe_leader.dcp"/>
   <File Type="RDS-UTIL-PB" Name="tmSe_leader_utilization_synth.pb"/>
-  <File Type="PA-TCL" Name="tmSe_leader.tcl"/>
   <File Type="RDS-UTIL" Name="tmSe_leader_utilization_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="tmSe_leader_reports.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="tmSe_leader_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="tmSe_leader.vds"/>
+  <File Type="REPORTS-TCL" Name="tmSe_leader_reports.tcl"/>
+  <File Type="VDS-TIMING-PB" Name="tmSe_leader_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="tmSe_leader.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/DAC_SPI.vhd">
@@ -35,6 +38,7 @@
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="tmSe_leader"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -53,6 +57,14 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
     <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/tmSe_leader.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
