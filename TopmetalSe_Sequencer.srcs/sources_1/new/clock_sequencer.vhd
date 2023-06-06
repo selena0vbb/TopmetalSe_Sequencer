@@ -70,9 +70,6 @@ architecture Behavioral of clock_sequencer is
     TYPE driveState_t IS (S0, S1, S2, COL_SHIFT, ROW_SHIFT);
     SIGNAL driveState      : driveState_t;
     
-    TYPE SA_driveState_t IS (idle, prepare, clock);
-    signal SA_driveState    : SA_driveState_t;
-    
     
 BEGIN
    TM_CLK_BUF <= CLK;
@@ -122,7 +119,7 @@ BEGIN
                 COL_ADDR <= COL_ADDR + 1;
                 driveState <= COL_SHIFT;
             WHEN COL_SHIFT =>
-                ROW_DAT_IN <= '0';
+                --ROW_DAT_IN <= '0';
                 
                 IF (COL_ADDR >= 99) THEN
                     
@@ -131,9 +128,12 @@ BEGIN
                     COL_DAT_IN <='1';
                     
                     LA_ROW_SHIFT_BUF<= '1';
-                    
+                    IF (ROW_ADDR>=99) THEN
+                        ROW_DAT_IN <= '1';
+                    ELSE
+                        ROW_DAT_IN<='0';                    
+                    END IF;
                     driveState<=ROW_SHIFT;
-                    
                     
                 ELSE
                     COL_ADDR <= COL_ADDR + 1;
@@ -144,10 +144,11 @@ BEGIN
                 LA_ROW_SHIFT_BUF<= '0';
                 COL_DAT_IN<='0';
                 IF (ROW_ADDR >= 99) THEN
-                    ROW_DAT_IN <= '1';
                     ROW_ADDR<="00000000";
+                    
+                    driveState<=COL_SHIFT;
                 ELSE
-                    --LA_ROW_SHIFT_BUF <= NOT LA_ROW_SHIFT_BUF;
+
                     ROW_ADDR <= ROW_ADDR + 1;
                     driveState<=COL_SHIFT;
  

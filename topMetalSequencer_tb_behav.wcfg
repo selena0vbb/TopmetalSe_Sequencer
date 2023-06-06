@@ -12,12 +12,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="15.000000001 ms"></ZoomEndTime>
-      <Cursor1Time time="9.796208531 ms"></Cursor1Time>
+      <ZoomEndTime time="10.001000001 ms"></ZoomEndTime>
+      <Cursor1Time time="4.527800000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="211"></NameColumnWidth>
-      <ValueColumnWidth column_width="102"></ValueColumnWidth>
+      <NameColumnWidth column_width="250"></NameColumnWidth>
+      <ValueColumnWidth column_width="128"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="60" />
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/RESET">
@@ -55,10 +55,14 @@
    <wvobject type="array" fp_name="/topMetalSequencer_tb/ROW_SEL">
       <obj_property name="ElementShortName">ROW_SEL[99:0]</obj_property>
       <obj_property name="ObjectShortName">ROW_SEL[99:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="Reversed">false</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/topMetalSequencer_tb/COL_SEL">
       <obj_property name="ElementShortName">COL_SEL[99:0]</obj_property>
       <obj_property name="ObjectShortName">COL_SEL[99:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="Reversed">false</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/DATA_OUT_ROW">
       <obj_property name="ElementShortName">DATA_OUT_ROW</obj_property>
@@ -242,10 +246,6 @@
       <obj_property name="ElementShortName">driveState</obj_property>
       <obj_property name="ObjectShortName">driveState</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/SA_driveState">
-      <obj_property name="ElementShortName">SA_driveState</obj_property>
-      <obj_property name="ObjectShortName">SA_driveState</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_R_CLK">
       <obj_property name="ElementShortName">SR_R_CLK</obj_property>
       <obj_property name="ObjectShortName">SR_R_CLK</obj_property>
@@ -261,5 +261,9 @@
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/LA_COL_CLK">
       <obj_property name="ElementShortName">LA_COL_CLK</obj_property>
       <obj_property name="ObjectShortName">LA_COL_CLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/data_in">
+      <obj_property name="ElementShortName">data_in</obj_property>
+      <obj_property name="ObjectShortName">data_in</obj_property>
    </wvobject>
 </wave_config>

@@ -69,36 +69,41 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
 
 
   COMPONENT tmSe_leader PORT(
-        INTERN_CLK     : IN std_logic; --Internal 100 MHz Clock
+    INTERN_CLK     : IN std_logic; --Internal 100 MHz Clock
    
-        EXTERN_CLK     : IN std_logic; --External 1-25 MHz Clock 
-        RESET          : IN std_logic;
+    EXTERN_CLK     : IN std_logic; --External 1-25 MHz Clock 
     
-        USB_SERIAL      : IN std_logic;
-           
-        SA_COL          : IN STD_LOGIC_VECTOR( 2 downto 0);
-        SA_ROW          : IN STD_LOGIC_VECTOR( 2 downto 0);
+    --Switches
+    RESET          : IN std_logic;
+    CONFIGURE_LED   :IN std_logic;
     
-        
-        --OUTPUTS
-        LA_ROW_SHIFT    : OUT std_logic;
-        LA_ROW_DAT_IN   : OUT std_logic;
-        LA_ROW_RESET    : OUT std_logic;
-        LA_ROW_CLK      : OUT std_logic;
-        
-        LA_COL_SHIFT    : OUT std_logic;
-        LA_COL_DAT_IN   : OUT std_logic;
-        LA_COL_RESET    : OUT std_logic;
-        LA_COL_CLK      : OUT std_logic;
-        
-        --Below controls small array(clocking and single pixel selection)
-        SA_ROW_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
-        SA_COL_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
-        
-        SPI_OUT         : OUT std_logic; --PMOD
-        SPI_SYNC        : OUT std_logic; --PMOD
-        SPI_SCLK        : OUT std_logic  --PMOD
+    USB_SERIAL      : IN std_logic;
     
+    SA_COL          : IN STD_LOGIC_VECTOR( 2 downto 0);
+    SA_ROW          : IN STD_LOGIC_VECTOR( 2 downto 0);
+    
+    
+    --OUTPUTS
+    --Below clocks shift registers of large array
+    LA_ROW_SHIFT    : OUT std_logic;
+    LA_ROW_DAT_IN   : OUT std_logic;
+    LA_ROW_RESET    : OUT std_logic;
+    LA_ROW_CLK      : OUT std_logic;
+    
+    LA_COL_SHIFT    : OUT std_logic;
+    LA_COL_DAT_IN   : OUT std_logic;
+    LA_COL_RESET    : OUT std_logic;
+    LA_COL_CLK      : OUT std_logic;
+    
+    --Below controls small array(clocking and single pixel selection)
+    SA_ROW_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+    SA_COL_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+    
+    SPI_OUT         : OUT std_logic; --PMOD
+    SPI_SYNC        : OUT std_logic; --PMOD
+    SPI_SCLK        : OUT std_logic;  --PMOD
+    
+    led             : OUT std_logic_vector(15 downto 0)
     --CLK_OUT         : OUT std_logic
   
   ); 
@@ -185,6 +190,8 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
     SIGNAL SR_C_CLK  : std_logic;
     
     SIGNAL SR_CLK_BUF: std_logic;
+    
+    SIGNAL CONFIG_LED : std_logic :='0';
 
   constant c_CLK_PERIOD : time := 10ns;
   constant C_BIT_PERIOD: time := 104167 ns;
@@ -240,7 +247,7 @@ BEGIN
     USB_SERIAL  => USB_SERIAL,
     SA_COL => SA_COL_IN,
     SA_ROW => SA_ROW_IN,
-    
+    CONFIGURE_LED => CONFIG_LED,
     
     --OUTPUTS
     LA_ROW_SHIFT   => ROW_SR_EN_BUF, 
@@ -259,9 +266,9 @@ BEGIN
     SPI_SCLK =>SCLK,
     
     SA_COL_OUT => SA_COL_OUT,
-    SA_ROW_OUT=>SA_ROW_OUT
+    SA_ROW_OUT=>SA_ROW_OUT,
     
-    
+    led=>open
   );
   
   
@@ -311,9 +318,9 @@ BEGIN
  stim_proc : PROCESS
  BEGIN
     -- hold reset state for 100 ns.
-    WAIT FOR EXTERN_CLK_PERIOD;
+    WAIT FOR 0.11ms;
     RESET <= '1';
-    WAIT FOR EXTERN_CLK_PERIOD;
+    WAIT FOR 0.1ms;
     RESET <= '0';
     WAIT FOR EXTERN_CLK_PERIOD;
     UART_WRITE_BYTE("11101101", USB_SERIAL);
@@ -323,10 +330,10 @@ BEGIN
     UART_WRITE_BYTE("11101101", USB_SERIAL);
     
     WAIT FOR 2ms;
-    RESET<='1';
+    --RESET<='1';
     UART_WRITE_BYTE("11101101", USB_SERIAL);
     WAIT FOR 1ms;
-    RESET<='0';
+    --RESET<='0';
     UART_WRITE_BYTE("11101101", USB_SERIAL);
     
     WAIT FOR 1ms;

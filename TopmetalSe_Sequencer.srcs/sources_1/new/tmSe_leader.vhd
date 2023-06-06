@@ -101,7 +101,7 @@ architecture Behavioral of tmSe_leader is
     
     SIGNAL LARGE_ARRAY_ENABLE : std_logic := '1';
     
-    SIGNAL wait_cycle : integer := 200; -- clock cycles to wait after reading in UART before resetting (need for writing to SPI)
+    SIGNAL wait_cycle : integer := 800; -- clock cycles to wait after reading in UART before resetting (need for writing to SPI)
     
     SIGNAL SA_ROW_BUF : STD_LOGIC_VECTOR (2 downto 0);
     SIGNAL SA_COL_BUF : STD_LOGIC_VECTOR (2 downto 0);
@@ -217,7 +217,7 @@ BEGIN
             --UART_RX_VALID <= '0';
             DAC_DAT_VAL <= '0';
             DAC_DAT_REG <= (others => '0');
-            wait_cycle <= 200;
+            wait_cycle <= 800;
         --Collects 32 bit value from UART, sends to SPI Module
         --Primary Handler for USB Communication
         --Data Packets are 8 + 32
@@ -271,7 +271,7 @@ BEGIN
                         wait_cycle <= wait_cycle -1;
                     END IF;
                 WHEN S_RESET =>
-                    wait_cycle <= 200;
+                    wait_cycle <= 800;
                     bridgeState <= IDLE;
                     DAC_DAT_REG <= (others => '0');
                     DAC_DAT_VAL <= '0';
