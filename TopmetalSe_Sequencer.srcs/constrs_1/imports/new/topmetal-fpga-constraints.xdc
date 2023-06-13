@@ -132,14 +132,14 @@ set_property PACKAGE_PIN L1 [get_ports {led[15]}]
 
 ##Pmod Header JA
 #Sch name = JA1
-set_property PACKAGE_PIN J1 [get_ports SPI_SCLK]					
-	set_property IOSTANDARD LVCMOS33 [get_ports SPI_SCLK]
-#Sch name = JA2
-set_property PACKAGE_PIN L2 [get_ports SPI_SYNC]					
+set_property PACKAGE_PIN J1 [get_ports SPI_SYNC]					
 	set_property IOSTANDARD LVCMOS33 [get_ports SPI_SYNC]
-#Sch name = JA3
-set_property PACKAGE_PIN J2 [get_ports SPI_OUT]					
+#Sch name = JA2
+set_property PACKAGE_PIN L2 [get_ports SPI_OUT]					
 	set_property IOSTANDARD LVCMOS33 [get_ports SPI_OUT]
+#Sch name = JA3
+set_property PACKAGE_PIN H1 [get_ports SPI_SCLK]					
+	set_property IOSTANDARD LVCMOS33 [get_ports SPI_SCLK]
 #Sch name = JA4
 #set_property PACKAGE_PIN G2 [get_ports GND]					
 #	set_property IOSTANDARD LVCMOS33 [get_ports GND]

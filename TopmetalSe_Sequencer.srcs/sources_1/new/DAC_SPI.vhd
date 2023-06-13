@@ -58,7 +58,7 @@ architecture Behavioral of DAC_SPI is
     SIGNAL CLK_COUNT        : integer := 0;
     
     
-    TYPE tx_state IS (IDLE, WX_OUT);
+    TYPE tx_state IS (IDLE, WX_OUT, WX_END);
     SIGNAL txstate      : tx_state;
     
     TYPE rx_state IS (IDLE, RX_IN, RX_WAIT);
@@ -114,6 +114,7 @@ BEGIN
             CASE txstate IS
             
             WHEN IDLE =>
+                SYNC_BUF <= '1';
                 DATA_OUT<= '0';
                 BIT_NUM <= 31;
                 IF REG_VAL = '1' THEN
@@ -125,10 +126,15 @@ BEGIN
                 DATA_OUT <= DAT_REG(BIT_NUM);
                 BIT_NUM <= BIT_NUM -1;
                 IF BIT_NUM = 0 THEN
-                    txstate <= IDLE;
-                    SYNC_BUF <= '1';
+                    txstate <= WX_END;
                 
                 END IF;             
+            WHEN WX_END =>
+                DATA_OUT<= '0';
+                SYNC_BUF <= '1';
+                txstate <= IDLE;
+            
+            
             END CASE;
         END IF;     
     END PROCESS;

@@ -1,7 +1,4 @@
-Running: xsim.dir/topMetalSequencer_tb_behav/xsimk -simmode gui -wdb topMetalSequencer_tb_behav.wdb -simrunnum 0 -socket 49325
+Running: xsim.dir/topMetalSequencer_tb_behav/xsimk -simmode gui -wdb topMetalSequencer_tb_behav.wdb -simrunnum 0 -socket 54865
 Design successfully loaded
 Design Loading Memory Usage: 29320 KB (Peak: 29440 KB)
-Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 119256 KB (Peak: 168588 KB)
-Simulation CPU Usage: 5580 ms
+Design Loading CPU Usage: 80 ms
