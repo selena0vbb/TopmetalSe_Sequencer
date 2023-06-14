@@ -1,5 +1,18 @@
 import serial
 
+def dac_voltage(adu, vref=2.5, gain=1):
+    v_out = (adu/2**16) * vref
+
+    return v_out
+
+def volt_dac(volt, vref = 2.5, gain=1):
+    '''
+        converts from v input to DAC value
+    '''
+#    volt = mv/100
+    d_in = volt/(vref*gain) * 2**16
+    return int(d_in)
+
 class DAC_8568():
 
     def __init__(self):
@@ -36,7 +49,7 @@ class DAC_8568():
 
         bin_string = "00001000000000000000000000000001"
         self.spi_write(bin_string) 
-    def set_dac_voltage(self, channel, value, load=True, update_all=False):
+    def set_dac_voltage(self, channel, value, load=True, update_all=False, adu=False):
         '''
             Sends a 16bit value to the DAC at a channel
             If load is true, then the value is instantly loaded onto the DAC. If false, the voltage is only present once the value is loaded
@@ -51,8 +64,10 @@ class DAC_8568():
             CNTRL="0000"
 
         ADDR = format(channel, '04b')
-
-        DATA = format(value, '016b')
+        if adu==True:
+            DATA = format(value, '016b')
+        else:
+            DATA = format(volt_dac(value), '016b')
 
         FEAT = "1111" #mostly don't matter
         

@@ -21,6 +21,7 @@ if __name__ == '__main__':
     parser.add_argument('-i',dest='interactive', type=bool)
    
     args=parser.parse_args()
+    
     if (args.ch is not None) and (args.val is not None):
         use_config=False 
         if(len(args.ch) != len(args.val)):
@@ -30,9 +31,8 @@ if __name__ == '__main__':
         use_config=True
 
     #Banner
-    Banner = pyfiglet.figlet_format("Selena TMSe")#, font="doh", width=800)
+    Banner = pyfiglet.figlet_format("Selena TMSe Control", width=800)
     print(Banner)
-    print("\nCode to control the TMSe\n\n") 
 
     #Setup DAC
     dac_device = DAC_control.DAC_8568()
@@ -44,18 +44,31 @@ if __name__ == '__main__':
 
     else:
         print("Setting DAC Values:\n")
-        
+        use_adu=True
+        load_instant = True 
+
         if not use_config:
             table_ch_val = list(zip(args.ch, args.val))
         else:
+            load_instant=False
+
             config=configparser.ConfigParser()
             config.read(args.config_file[0].name)
             
+            if config['DAC']['volt'] : 
+                use_adu=False
+
             ch = np.arange(0,8,1)
             val = []
+                    
             for ch_num in ch:
                 ch_attr = 'ch_%i'%(ch_num)
-                val.append(int(config['DAC'][ch_attr]))
+
+                if use_adu:
+                    val.append(int(config['DAC'][ch_attr]))
+                else:
+                    val.append(float(config['DAC'][ch_attr]))
+
                 
 
             table_ch_val = list(zip(ch, val))
@@ -65,8 +78,11 @@ if __name__ == '__main__':
         for value_set in table_ch_val:
             channel = value_set[0]
             dac_value = value_set[1]
-
-            dac_device.set_dac_voltage(channel, dac_value, load=True) #write DAC value and instantly load onto DAC
-            
-
+            if load_instant: 
+                dac_device.set_dac_voltage(channel, dac_value, load=True, adu = use_adu) #write DAC value and instantly load onto DAC
+            else:
+                if channel < 7:
+                    dac_device.set_dac_voltage(channel, dac_value, load=False, adu = use_adu) #write DAC value and instantly load onto DAC
+                else:
+                    dac_device.set_dac_voltage(channel, dac_value, load=True,update_all=True, adu = use_adu) #write DAC value and instantly load onto DAC
          
