@@ -1,4 +1,5 @@
 import DAC_control
+import command_parser
 
 import argparse
 import configparser
@@ -9,16 +10,19 @@ import pyfiglet
 import numpy as np
 
 if __name__ == '__main__':
+    Banner = pyfiglet.figlet_format("Selena TMSe Control", width=800)
+    print(Banner)
+
 
     #Argument Parser
     parser = argparse.ArgumentParser(prog = 'DAC Writer')
     
-    parser.add_argument('-ch', nargs='*', type=int)
-    parser.add_argument('-val', nargs='*', type=int,)
+    parser.add_argument('-ch', nargs='*', type=int, help='Channel number or list of channels')
+    parser.add_argument('-val', nargs='*', type=float, help='Voltage value or list of voltages')
     
-    parser.add_argument('-config', nargs=1, type=argparse.FileType('r', encoding='UTF-8'), dest='config_file')
+    parser.add_argument('-config', nargs=1, type=argparse.FileType('r', encoding='UTF-8'), dest='config_file', help ='Config file')
 
-    parser.add_argument('-i',dest='interactive', type=bool)
+    parser.add_argument('-i',dest='interactive', type=bool,  help='Interactive session')
    
     args=parser.parse_args()
     
@@ -31,20 +35,25 @@ if __name__ == '__main__':
         use_config=True
 
     #Banner
-    Banner = pyfiglet.figlet_format("Selena TMSe Control", width=800)
-    print(Banner)
-
-    #Setup DAC
+        #Setup DAC
     dac_device = DAC_control.DAC_8568()
     dac_device.set_internal_ref()
 
     #Begin Program
     if(args.interactive == True):
         print("Interactive Mode")
+        
+        in_control = command_parser.parser(dac_device)
+        while(1==1):
+            command = input("TMSe Control>> ")
+            if (command == 'exit'):
+                break 
+            else:    
+                in_control.parse_command(command)
 
     else:
         print("Setting DAC Values:\n")
-        use_adu=True
+        use_adu=False
         load_instant = True 
 
         if not use_config:
@@ -82,7 +91,7 @@ if __name__ == '__main__':
                 dac_device.set_dac_voltage(channel, dac_value, load=True, adu = use_adu) #write DAC value and instantly load onto DAC
             else:
                 if channel < 7:
-                    dac_device.set_dac_voltage(channel, dac_value, load=False, adu = use_adu) #write DAC value and instantly load onto DAC
+                    dac_device.set_dac_voltage(channel, dac_value, load=False, adu = use_adu) #write DAC without loading 
                 else:
-                    dac_device.set_dac_voltage(channel, dac_value, load=True,update_all=True, adu = use_adu) #write DAC value and instantly load onto DAC
+                    dac_device.set_dac_voltage(channel, dac_value, load=True,update_all=True, adu = use_adu) #write last channel and load all values
          

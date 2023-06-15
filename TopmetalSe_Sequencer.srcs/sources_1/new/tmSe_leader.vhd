@@ -282,9 +282,14 @@ BEGIN
     
     END PROCESS;
     
-    UART_LED_SIGNAL: process(INTERN_CLK, DAC_DAT_VAL)
+    UART_LED_SIGNAL: process(INTERN_CLK, DAC_DAT_VAL, RESET)
     
     BEGIN
+        IF RESET = '1' THEN
+            led_buf <=(others => '0');
+        END IF;
+        
+    
         IF rising_edge(DAC_DAT_VAL) THEN
             led_buf <= DAC_DAT_REG;
         END IF;
