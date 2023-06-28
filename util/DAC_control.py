@@ -111,4 +111,4 @@ if __name__ == '__main__':
     test = DAC_8568()
 
     test.set_internal_ref()
-    test.set_dac_voltage(0, 2000)
+    test.set_dac_voltage(2, 2)
