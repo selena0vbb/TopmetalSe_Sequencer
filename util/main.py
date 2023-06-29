@@ -82,7 +82,7 @@ if __name__ == '__main__':
 
             table_ch_val = list(zip(ch, val))
 
-        print(tabulate(table_ch_val, headers=['Channel', 'Value']))
+        print(tabulate(table_ch_val, headers=['Channel', 'Value(V)']))
         
         for value_set in table_ch_val:
             channel = value_set[0]
