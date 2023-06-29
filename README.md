@@ -32,3 +32,44 @@ optional arguments:
 ```
 To set a voltage on a specific channel:
 
+```
+user@console$ python main.py -ch 1 2 3 -val 0.1 0.2 0.3
+ ____       _                    _____ __  __ ____          ____            _             _ 
+/ ___|  ___| | ___ _ __   __ _  |_   _|  \/  / ___|  ___   / ___|___  _ __ | |_ _ __ ___ | |
+\___ \ / _ \ |/ _ \ '_ \ / _` |   | | | |\/| \___ \ / _ \ | |   / _ \| '_ \| __| '__/ _ \| |
+ ___) |  __/ |  __/ | | | (_| |   | | | |  | |___) |  __/ | |__| (_) | | | | |_| | | (_) | |
+|____/ \___|_|\___|_| |_|\__,_|   |_| |_|  |_|____/ \___|  \____\___/|_| |_|\__|_|  \___/|_|
+                                                                                            
+
+Setting DAC Values:
+
+  Channel    Value(V)
+---------  ----------
+        1         0.1
+        2         0.2
+        3         0.3
+```
+I have also included an example config file that can be used. The voltage values in this case are only loaded onto the DAC after every voltage has been read onto the DAC shift registers:
+
+```
+user@console$ python main.py -config config.ini 
+ ____       _                    _____ __  __ ____          ____            _             _ 
+/ ___|  ___| | ___ _ __   __ _  |_   _|  \/  / ___|  ___   / ___|___  _ __ | |_ _ __ ___ | |
+\___ \ / _ \ |/ _ \ '_ \ / _` |   | | | |\/| \___ \ / _ \ | |   / _ \| '_ \| __| '__/ _ \| |
+ ___) |  __/ |  __/ | | | (_| |   | | | |  | |___) |  __/ | |__| (_) | | | | |_| | | (_) | |
+|____/ \___|_|\___|_| |_|\__,_|   |_| |_|  |_|____/ \___|  \____\___/|_| |_|\__|_|  \___/|_|
+                                                                                            
+
+Setting DAC Values:
+
+  Channel    Value(V)
+---------  ----------
+        0       1.3
+        1       0.51
+        2       0.397
+        3       0.696
+        4       1.143
+        5       0.8
+        6       0.35
+        7       1
+```
