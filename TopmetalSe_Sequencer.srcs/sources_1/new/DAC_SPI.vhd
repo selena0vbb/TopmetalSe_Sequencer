@@ -36,6 +36,7 @@ entity DAC_SPI is
     RESET   : in std_logic;
     DATA_IN : in std_logic_vector(31 downto 0);
     DATA_VAL : in std_logic;
+    SCLK_ON  : in std_logic;
     
     DATA_OUT    : out std_logic;
     SYNC_OUT    : out std_logic;
@@ -48,8 +49,8 @@ architecture Behavioral of DAC_SPI is
     SIGNAL CLK_BUF  : std_logic;
     SIGNAL DAT_REG  : std_logic_vector(31 downto 0);
     SIGNAL REG_VAL  : std_logic;
-    
-    SIGNAL SCLK_BUF : std_logic := '0';
+
+    SIGNAL SCLK_BUF  : std_logic := '0';
     
     SIGNAL BIT_NUM  : integer  := 31;
     
@@ -146,9 +147,12 @@ BEGIN
         --if RESET =  '1' THEN
         --SCLK <= '0';
         IF RISING_EDGE(CLK_BUF) THEN
+            
             CLK_COUNT <= CLK_COUNT +1;
             IF CLK_COUNT = 3 THEN
-                SCLK_BUF <= NOT SCLK_BUF;
+                IF SCLK_ON = '1' THEN    
+                    SCLK_BUF <= NOT SCLK_BUF;
+                END IF;
                 CLK_COUNT<=0;
             END IF;
         

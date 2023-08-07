@@ -73,3 +73,6 @@ Setting DAC Values:
         6       0.35
         7       1
 ```
+
+#Biasing of the TopmetalSe
+

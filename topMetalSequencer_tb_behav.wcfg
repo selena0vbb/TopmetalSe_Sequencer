@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="10.001000001 ms"></ZoomEndTime>
-      <Cursor1Time time="4.527800000 ms"></Cursor1Time>
+      <ZoomEndTime time="40.001000001 ms"></ZoomEndTime>
+      <Cursor1Time time="0.110000000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="250"></NameColumnWidth>
-      <ValueColumnWidth column_width="128"></ValueColumnWidth>
+      <ValueColumnWidth column_width="124"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="60" />
+   <WVObjectSize size="61" />
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/RESET">
       <obj_property name="ElementShortName">RESET</obj_property>
       <obj_property name="ObjectShortName">RESET</obj_property>
@@ -265,5 +265,9 @@
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/data_in">
       <obj_property name="ElementShortName">data_in</obj_property>
       <obj_property name="ObjectShortName">data_in</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/SCLK_BUF">
+      <obj_property name="ElementShortName">SCLK_BUF</obj_property>
+      <obj_property name="ObjectShortName">SCLK_BUF</obj_property>
    </wvobject>
 </wave_config>

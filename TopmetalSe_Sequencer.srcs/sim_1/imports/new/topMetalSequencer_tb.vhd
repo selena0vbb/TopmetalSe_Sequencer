@@ -17,7 +17,7 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
+--
 
 
 LIBRARY IEEE;
@@ -323,6 +323,8 @@ BEGIN
     WAIT FOR 0.1ms;
     RESET <= '0';
     WAIT FOR EXTERN_CLK_PERIOD;
+    UART_WRITE_BYTE("11100000", USB_SERIAL);
+    WAIT FOR 2ms;
     UART_WRITE_BYTE("11101101", USB_SERIAL);
 
     WAIT FOR 2ms;
