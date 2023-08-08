@@ -37,37 +37,6 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
 
   -- Component Declaration for the Unit Under Test (UUT)
   
---  COMPONENT topMetalSequencerLeader
---GENERIC (
---    ROWS          : positive := 72;     -- number of ROWS in the array
---    COLS          : positive := 72;     -- number of COLS in the ARRAY
---    CLK_DIV_WIDTH : positive := 16;
---    CONFIG_WIDTH  : positive := 14
---  );
---  PORT (
---    CLK               : IN  std_logic;      -- clock, TM_CLK_S is derived from this one
---    RESET             : IN  std_logic;      -- reset
---    EXTERN_CLK        : IN  std_logic;
---    USE_EXTERN_CLK    : IN  std_logic;
---    --CONFIGURE         : IN std_logic; 
---    USB_SERIAL        : IN std_logic;
---    trigger_adc       : IN unsigned(7 DOWNTO 0);
---    trigger_thresh_switch : IN std_logic_vector(7 DOWNTO 0);
-
---    led           : OUT std_logic_vector(15 downto 0);
---    -- output
---    TRIGGER_OUT   : OUT std_logic;
---    --
-----    TM_RST        : OUT std_logic;      -- digital reset
---    TM_CLK_S      : OUT std_logic;
---    TM_RST_S      : OUT std_logic;
---    TM_START_S    : OUT std_logic;
---    TM_SPEAK_S    : OUT std_logic;
---    GND           : OUT std_logic
--- );
---  END COMPONENT;
-
-
   COMPONENT tmSe_leader PORT(
     INTERN_CLK     : IN std_logic; --Internal 100 MHz Clock
    
@@ -323,13 +292,13 @@ BEGIN
     WAIT FOR 0.1ms;
     RESET <= '0';
     WAIT FOR EXTERN_CLK_PERIOD;
+    UART_WRITE_BYTE("01010001", USB_SERIAL);
+    WAIT FOR 2ms;
+    UART_WRITE_BYTE("00100001", USB_SERIAL);
+
+    WAIT FOR 2ms;
+
     UART_WRITE_BYTE("11100000", USB_SERIAL);
-    WAIT FOR 2ms;
-    UART_WRITE_BYTE("11101101", USB_SERIAL);
-
-    WAIT FOR 2ms;
-
-    UART_WRITE_BYTE("11101101", USB_SERIAL);
     
     WAIT FOR 2ms;
     --RESET<='1';
@@ -363,69 +332,4 @@ END PROCESS;
 --file_open(input_buf, "/home/selena/Documents/UWTopMetalSequencer/sim_data/sim_simple.txt", read_mode);
 --file_open(output_buf, "/home/selena/Documents/UWTopMetalSequencer/sim_data/trigger_out.txt", write_mode);
 
---wait for 20ms;
---WAIT FOR CLK_period/2;
---RESET <= '1';
---WAIT FOR CLK_period/2;
---RESET <= '0';
---wait for 3.5*CLK_period;
-
---write(write_col_to_output_buf, string'("#trigger value"));
---writeline(output_buf, write_col_to_output_buf);
-
---while not endfile(input_buf) loop
---readline(input_buf, read_from_input_buf);
---read(read_from_input_buf, data);
-
---trigger_adc(7 downto 0) <= unsigned(data);
-
-----        tout := TRIGGER_OUT;
-
-
-
-
---wait for CLK_period;
-----        write(write_col_to_output_buf, data);
-----        write(write_col_to_output_buf, string'("  "));
---write(write_col_to_output_buf, TRIGGER_OUT);
---writeline(output_buf, write_col_to_output_buf);  
-
---end loop;
-
---file_close(input_buf);
---file_close(output_buf);
-
---wait;
---end process;
---CLK <= not CLK after c_CLK_PERIOD/2;
-
---serial_test: process
---begin
----- Send a command to the UART
-
---wait for 10 ns;
---UART_WRITE_BYTE("11101101", USB_SERIAL);
-
---UART_WRITE_BYTE("00000001", USB_Serial);
---wait for 2 ms;
---UART_WRITE_BYTE("00100000", USB_SERIAL);
---wait for 2ms;
-
---UART_WRITE_BYTE("00000010", USB_SERIAL);
---wait for 2ms;
---UART_WRITE_BYTE("00100000", USB_SERIAL);
-
-----wait until rising_edge(CLK);
---wait for 2 ms;
---UART_WRITE_BYTE("00000010", USB_SERIAL);
-
---UART_WRITE_BYTE("10100110", USB_SERIAL);
-
---wait for 1ms;
---UART_WRITE_BYTE("11111101", USB_SERIAL);
---UART_WRITE_BYTE("00000000", USB_SERIAL);
---UART_WRITE_BYTE("11110000", USB_SERIAL);
-
---wait;
---END PROCESS;
 END;

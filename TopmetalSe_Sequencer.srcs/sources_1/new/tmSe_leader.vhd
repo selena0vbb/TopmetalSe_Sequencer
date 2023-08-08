@@ -265,7 +265,7 @@ BEGIN
             --UART_RX_VALID <= '0';
             DAC_DAT_VAL <= '0';
             DAC_DAT_REG <= (others => '0');
-            wait_cycle <= 800;
+            wait_cycle <= 8000;
         --Collects 32 bit value from UART, sends to SPI Module
         --Primary Handler for USB Communication to DAC
         --Data Packets are 8 + 32
@@ -281,20 +281,18 @@ BEGIN
                         IF UART_REG(3 downto 0) = "0000" THEN --DAC PROGRAM
                            bridgeState<=DAC_PROGRAM;
                            SCLK_ON <= '0';
-                        ELSIF UART_REG(3 downto 0) = "---1" THEN -- SMALL ARRAY SELECT
-                            
-                            IF UART_REG(3 downto 0) = "--11" THEN -- USE HARDWARE SWITCHES
+
+                        ELSIF UART_REG(3 downto 0) = "0011" THEN -- USE HARDWARE SWITCHES
                               -- set hardware siwtch to 1
                               SA_USE_SWITCH <= '1';
-                            ELSIF UART_REG(3 downto 0) = "--01" THEN -- USE UART PIXEL SELECTION
+                        ELSIF UART_REG(3 downto 0) = "0001" THEN -- USE UART PIXEL SELECTION
                                 -- first four bits
                                 SA_PXL_ADDR<=UART_REG(7 downto 4);
                                 SA_USE_SWITCH <= '0';
-                                
-                            END IF;
-                        ELSIF UART_REG(3 downto 0) = "01--" THEN -- LARGE ARRAY SELECT
+                                bridgeState <= S_RESET;
+                        ELSIF UART_REG(3 downto 0) = "0100" THEN -- LARGE ARRAY SELECT
                             --program later
-                        ELSIF UART_REG(3 downto 0) = "00--" THEN --TURN ON CLOCKING
+                        ELSIF UART_REG(3 downto 0) = "1100" THEN --TURN ON CLOCKING
                             --program later
                           
                         END IF;
@@ -348,7 +346,7 @@ BEGIN
                     END IF;
                 WHEN S_RESET =>
                     SCLK_ON<= '0';
-                    wait_cycle <= 800;
+                    wait_cycle <= 8000;
                     bridgeState <= IDLE;
                     DAC_DAT_REG <= (others => '0');
                     DAC_DAT_VAL <= '0';
