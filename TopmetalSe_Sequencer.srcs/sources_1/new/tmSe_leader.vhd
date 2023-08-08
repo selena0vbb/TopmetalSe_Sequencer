@@ -276,10 +276,12 @@ BEGIN
         ELSIF RISING_EDGE(UART_RX_VALID) then
             case bridgeState is
                 WHEN IDLE =>
+                    DAC_DAT_VAL <=  '0';
+                    SCLK_ON <= '0';
                 
 					IF UART_REG(3 downto 0) = "0000" THEN --DAC PROGRAM
 					   bridgeState<=DAC_PROGRAM;
-					   SCLK_ON <= '1';
+					   SCLK_ON <= '0';
 					ELSIF UART_REG(3 downto 0) = "---1" THEN -- SMALL ARRAY SELECT
 						
 						IF UART_REG(3 downto 0) = "--11" THEN -- USE HARDWARE SWITCHES
@@ -322,23 +324,27 @@ BEGIN
                     DAC_DAT_REG(23 DOWNTO 16) <= UART_REG;
                     UART_DAC_STATE <= "11";
                     bridgeState <= DAC_PROGRAM;
+                    SCLK_ON <= '1';
                 WHEN DAT_IN3 =>
                     DAC_DAT_REG(31 DOWNTO 24) <= UART_REG;
                     --UART_STATE <= "11";
-                    bridgeState <= STOP;
-                    SCLK_ON <= '0';
+                    --bridgeState <= STOP;
+                    SCLK_ON <= '1';
+                    DAC_DAT_VAL <=  '1';
+                    bridgeState<= IDLE;
                 WHEN STOP =>
                     SCLK_ON <= '0';
-                    DAC_DAT_VAL <=  '1';
                     
                     bridgeState<= SPI_WAIT;
                 WHEN SPI_WAIT =>
                     DAC_DAT_VAL<= '0';
+                    
                     --wait few clock cycles before resetting
                     IF wait_cycle = 0 THEN
                         bridgeState <= S_RESET;
                     ELSE
                         wait_cycle <= wait_cycle -1;
+                        SCLK_ON<= '0';
                     END IF;
                 WHEN S_RESET =>
                     wait_cycle <= 800;
@@ -373,7 +379,5 @@ BEGIN
         END IF;
         
     END PROCESS;
-    
 
-    
 end Behavioral;

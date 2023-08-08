@@ -141,8 +141,8 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream">
-      <Option Id="BinFile">1</Option>
       <Option Id="VerboseBool">1</Option>
+      <Option Id="BinFile">1</Option>
     </Step>
     <Step Id="write_device_image"/>
   </Strategy>

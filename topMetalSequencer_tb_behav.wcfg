@@ -12,21 +12,17 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="40.001000001 ms"></ZoomEndTime>
-      <Cursor1Time time="0.110000000 ms"></Cursor1Time>
+      <ZoomEndTime time="69.571235389 ms"></ZoomEndTime>
+      <Cursor1Time time="15.747261663 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="250"></NameColumnWidth>
-      <ValueColumnWidth column_width="124"></ValueColumnWidth>
+      <ValueColumnWidth column_width="112"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="61" />
+   <WVObjectSize size="41" />
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/RESET">
       <obj_property name="ElementShortName">RESET</obj_property>
       <obj_property name="ObjectShortName">RESET</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/led">
-      <obj_property name="ElementShortName">led[15:0]</obj_property>
-      <obj_property name="ObjectShortName">led[15:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/ROW_SR_EN">
       <obj_property name="ElementShortName">ROW_SR_EN</obj_property>
@@ -120,154 +116,76 @@
       <obj_property name="ElementShortName">USB_SERIAL</obj_property>
       <obj_property name="ObjectShortName">USB_SERIAL</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/EXTERN_CLK">
-      <obj_property name="ElementShortName">EXTERN_CLK</obj_property>
-      <obj_property name="ObjectShortName">EXTERN_CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/INTERN_CLK">
-      <obj_property name="ElementShortName">INTERN_CLK</obj_property>
-      <obj_property name="ObjectShortName">INTERN_CLK</obj_property>
-   </wvobject>
    <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/bridgeState">
       <obj_property name="ElementShortName">bridgeState</obj_property>
       <obj_property name="ObjectShortName">bridgeState</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/UART_RX_VALID">
-      <obj_property name="ElementShortName">UART_RX_VALID</obj_property>
-      <obj_property name="ObjectShortName">UART_RX_VALID</obj_property>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/CLK_IN">
+      <obj_property name="ElementShortName">CLK_IN</obj_property>
+      <obj_property name="ObjectShortName">CLK_IN</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/rxstate">
-      <obj_property name="ElementShortName">rxstate</obj_property>
-      <obj_property name="ObjectShortName">rxstate</obj_property>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/RESET">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/DATA_IN">
+      <obj_property name="ElementShortName">DATA_IN[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_IN[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/DATA_VAL">
+      <obj_property name="ElementShortName">DATA_VAL</obj_property>
+      <obj_property name="ObjectShortName">DATA_VAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/SCLK_ON">
+      <obj_property name="ElementShortName">SCLK_ON</obj_property>
+      <obj_property name="ObjectShortName">SCLK_ON</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/DATA_OUT">
+      <obj_property name="ElementShortName">DATA_OUT</obj_property>
+      <obj_property name="ObjectShortName">DATA_OUT</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/SYNC_OUT">
+      <obj_property name="ElementShortName">SYNC_OUT</obj_property>
+      <obj_property name="ObjectShortName">SYNC_OUT</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/SCLK">
+      <obj_property name="ElementShortName">SCLK</obj_property>
+      <obj_property name="ObjectShortName">SCLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/CLK_BUF">
+      <obj_property name="ElementShortName">CLK_BUF</obj_property>
+      <obj_property name="ObjectShortName">CLK_BUF</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/DAT_REG">
       <obj_property name="ElementShortName">DAT_REG[31:0]</obj_property>
       <obj_property name="ObjectShortName">DAT_REG[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/clk">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/ena">
-      <obj_property name="ElementShortName">ena</obj_property>
-      <obj_property name="ObjectShortName">ena</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/rst">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/data_in">
-      <obj_property name="ElementShortName">data_in</obj_property>
-      <obj_property name="ObjectShortName">data_in</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/data_out">
-      <obj_property name="ElementShortName">data_out</obj_property>
-      <obj_property name="ObjectShortName">data_out</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/SR_ROW/COL_SEL">
-      <obj_property name="ElementShortName">COL_SEL[99:0]</obj_property>
-      <obj_property name="ObjectShortName">COL_SEL[99:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/SR_ROW/data_reg">
-      <obj_property name="ElementShortName">data_reg[99:0]</obj_property>
-      <obj_property name="ObjectShortName">data_reg[99:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/SR_ROW/REG_DEPTH">
-      <obj_property name="ElementShortName">REG_DEPTH[31:0]</obj_property>
-      <obj_property name="ObjectShortName">REG_DEPTH[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/CLK">
-      <obj_property name="ElementShortName">CLK</obj_property>
-      <obj_property name="ObjectShortName">CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/RESET">
-      <obj_property name="ElementShortName">RESET</obj_property>
-      <obj_property name="ObjectShortName">RESET</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/ENABLE">
-      <obj_property name="ElementShortName">ENABLE</obj_property>
-      <obj_property name="ObjectShortName">ENABLE</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/LA_ROW_SHIFT">
-      <obj_property name="ElementShortName">LA_ROW_SHIFT</obj_property>
-      <obj_property name="ObjectShortName">LA_ROW_SHIFT</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/LA_COL_SHIFT">
-      <obj_property name="ElementShortName">LA_COL_SHIFT</obj_property>
-      <obj_property name="ObjectShortName">LA_COL_SHIFT</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/ROW_DAT_IN">
-      <obj_property name="ElementShortName">ROW_DAT_IN</obj_property>
-      <obj_property name="ObjectShortName">ROW_DAT_IN</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/COL_DAT_IN">
-      <obj_property name="ElementShortName">COL_DAT_IN</obj_property>
-      <obj_property name="ObjectShortName">COL_DAT_IN</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/ROW_CLK">
-      <obj_property name="ElementShortName">ROW_CLK</obj_property>
-      <obj_property name="ObjectShortName">ROW_CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/COL_CLK">
-      <obj_property name="ElementShortName">COL_CLK</obj_property>
-      <obj_property name="ObjectShortName">COL_CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/ROW_RESET">
-      <obj_property name="ElementShortName">ROW_RESET</obj_property>
-      <obj_property name="ObjectShortName">ROW_RESET</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/COL_RESET">
-      <obj_property name="ElementShortName">COL_RESET</obj_property>
-      <obj_property name="ObjectShortName">COL_RESET</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/TM_CLK_BUF">
-      <obj_property name="ElementShortName">TM_CLK_BUF</obj_property>
-      <obj_property name="ObjectShortName">TM_CLK_BUF</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/LA_ROW_SHIFT_BUF">
-      <obj_property name="ElementShortName">LA_ROW_SHIFT_BUF</obj_property>
-      <obj_property name="ObjectShortName">LA_ROW_SHIFT_BUF</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/LA_COL_SHIFT_BUF">
-      <obj_property name="ElementShortName">LA_COL_SHIFT_BUF</obj_property>
-      <obj_property name="ObjectShortName">LA_COL_SHIFT_BUF</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/ROW_ADDR">
-      <obj_property name="ElementShortName">ROW_ADDR[7:0]</obj_property>
-      <obj_property name="ObjectShortName">ROW_ADDR[7:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/COL_ADDR">
-      <obj_property name="ElementShortName">COL_ADDR[7:0]</obj_property>
-      <obj_property name="ObjectShortName">COL_ADDR[7:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/driveState">
-      <obj_property name="ElementShortName">driveState</obj_property>
-      <obj_property name="ObjectShortName">driveState</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_R_CLK">
-      <obj_property name="ElementShortName">SR_R_CLK</obj_property>
-      <obj_property name="ObjectShortName">SR_R_CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_C_CLK">
-      <obj_property name="ElementShortName">SR_C_CLK</obj_property>
-      <obj_property name="ObjectShortName">SR_C_CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/LA_ROW_CLK">
-      <obj_property name="ElementShortName">LA_ROW_CLK</obj_property>
-      <obj_property name="ObjectShortName">LA_ROW_CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/LA_COL_CLK">
-      <obj_property name="ElementShortName">LA_COL_CLK</obj_property>
-      <obj_property name="ObjectShortName">LA_COL_CLK</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/SR_ROW/data_in">
-      <obj_property name="ElementShortName">data_in</obj_property>
-      <obj_property name="ObjectShortName">data_in</obj_property>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/REG_VAL">
+      <obj_property name="ElementShortName">REG_VAL</obj_property>
+      <obj_property name="ObjectShortName">REG_VAL</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/SCLK_BUF">
       <obj_property name="ElementShortName">SCLK_BUF</obj_property>
       <obj_property name="ObjectShortName">SCLK_BUF</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/BIT_NUM">
+      <obj_property name="ElementShortName">BIT_NUM</obj_property>
+      <obj_property name="ObjectShortName">BIT_NUM</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/SYNC_BUF">
+      <obj_property name="ElementShortName">SYNC_BUF</obj_property>
+      <obj_property name="ObjectShortName">SYNC_BUF</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/CLK_COUNT">
+      <obj_property name="ElementShortName">CLK_COUNT</obj_property>
+      <obj_property name="ObjectShortName">CLK_COUNT</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/txstate">
+      <obj_property name="ElementShortName">txstate</obj_property>
+      <obj_property name="ObjectShortName">txstate</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/SPI_WX_DAC/rxstate">
+      <obj_property name="ElementShortName">rxstate</obj_property>
+      <obj_property name="ObjectShortName">rxstate</obj_property>
    </wvobject>
 </wave_config>
