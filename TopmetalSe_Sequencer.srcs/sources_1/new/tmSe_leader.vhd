@@ -103,7 +103,7 @@ architecture Behavioral of tmSe_leader is
     
     SIGNAL LARGE_ARRAY_ENABLE : std_logic := '1';
     
-    SIGNAL wait_cycle : integer := 800; -- clock cycles to wait after reading in UART before resetting (need for writing to SPI)
+    SIGNAL wait_cycle : integer := 8000; -- clock cycles to wait after reading in UART before resetting (need for writing to SPI)
     
     SIGNAL SA_ROW_BUF : STD_LOGIC_VECTOR (2 downto 0);
     SIGNAL SA_COL_BUF : STD_LOGIC_VECTOR (2 downto 0);
@@ -273,45 +273,45 @@ BEGIN
         --Use python USB code to control the generation of the signals (see elsewhere)
         --8 bits control clocking primarily, use them to switch between control clock signals and control DAC signals
 
-        ELSIF RISING_EDGE(UART_RX_VALID) then
+        ELSIF RISING_EDGE(INTERN_CLK) then
             case bridgeState is
                 WHEN IDLE =>
-                    DAC_DAT_VAL <=  '0';
-                    SCLK_ON <= '0';
-                
-					IF UART_REG(3 downto 0) = "0000" THEN --DAC PROGRAM
-					   bridgeState<=DAC_PROGRAM;
-					   SCLK_ON <= '0';
-					ELSIF UART_REG(3 downto 0) = "---1" THEN -- SMALL ARRAY SELECT
-						
-						IF UART_REG(3 downto 0) = "--11" THEN -- USE HARDWARE SWITCHES
-						  -- set hardware siwtch to 1
-						  SA_USE_SWITCH <= '1';
-						ELSIF UART_REG(3 downto 0) = "--01" THEN -- USE UART PIXEL SELECTION
-                            -- first four bits
-                            SA_PXL_ADDR<=UART_REG(7 downto 4);
-                            SA_USE_SWITCH <= '0';
+                    IF UART_RX_VALID = '1' THEN
+                    
+                        IF UART_REG(3 downto 0) = "0000" THEN --DAC PROGRAM
+                           bridgeState<=DAC_PROGRAM;
+                           SCLK_ON <= '0';
+                        ELSIF UART_REG(3 downto 0) = "---1" THEN -- SMALL ARRAY SELECT
                             
+                            IF UART_REG(3 downto 0) = "--11" THEN -- USE HARDWARE SWITCHES
+                              -- set hardware siwtch to 1
+                              SA_USE_SWITCH <= '1';
+                            ELSIF UART_REG(3 downto 0) = "--01" THEN -- USE UART PIXEL SELECTION
+                                -- first four bits
+                                SA_PXL_ADDR<=UART_REG(7 downto 4);
+                                SA_USE_SWITCH <= '0';
+                                
+                            END IF;
+                        ELSIF UART_REG(3 downto 0) = "01--" THEN -- LARGE ARRAY SELECT
+                            --program later
+                        ELSIF UART_REG(3 downto 0) = "00--" THEN --TURN ON CLOCKING
+                            --program later
+                          
                         END IF;
-					ELSIF UART_REG(3 downto 0) = "01--" THEN -- LARGE ARRAY SELECT
-                        --program later
-                    ELSIF UART_REG(3 downto 0) = "00--" THEN --TURN ON CLOCKING
-                        --program later
-                            
+                    
                     END IF;
-
 				WHEN DAC_PROGRAM =>
-
-                    IF UART_DAC_STATE = "00" THEN
-                        bridgeState <= DAT_IN0;
-                    ELSIF UART_DAC_STATE = "01" THEN
-                        bridgeState <= DAT_IN1;
-                    ELSIF UART_DAC_STATE = "10" THEN
-                        bridgeState <= DAT_IN2;
-                    ELSIF UART_DAC_STATE = "11" THEN
-                        bridgeState <= DAT_IN3;
+                    IF UART_RX_VALID = '1' THEN
+                        IF UART_DAC_STATE = "00" THEN
+                            bridgeState <= DAT_IN0;
+                        ELSIF UART_DAC_STATE = "01" THEN
+                            bridgeState <= DAT_IN1;
+                        ELSIF UART_DAC_STATE = "10" THEN
+                            bridgeState <= DAT_IN2;
+                        ELSIF UART_DAC_STATE = "11" THEN
+                            bridgeState <= DAT_IN3;
+                        END IF;
                     END IF;
-
                 WHEN DAT_IN0 =>
                     DAC_DAT_REG(7 DOWNTO 0) <= UART_REG;
                     UART_DAC_STATE <= "01";
@@ -329,12 +329,12 @@ BEGIN
                     DAC_DAT_REG(31 DOWNTO 24) <= UART_REG;
                     --UART_STATE <= "11";
                     --bridgeState <= STOP;
-                    SCLK_ON <= '1';
-                    DAC_DAT_VAL <=  '1';
-                    bridgeState<= IDLE;
+                    --SCLK_ON <= '1';
+                    --DAC_DAT_VAL <=  '1';
+                    bridgeState<= STOP;
                 WHEN STOP =>
-                    SCLK_ON <= '0';
-                    
+                    SCLK_ON <= '1';
+                    DAC_DAT_VAL <= '1';
                     bridgeState<= SPI_WAIT;
                 WHEN SPI_WAIT =>
                     DAC_DAT_VAL<= '0';
@@ -344,16 +344,16 @@ BEGIN
                         bridgeState <= S_RESET;
                     ELSE
                         wait_cycle <= wait_cycle -1;
-                        SCLK_ON<= '0';
+                        
                     END IF;
                 WHEN S_RESET =>
+                    SCLK_ON<= '0';
                     wait_cycle <= 800;
                     bridgeState <= IDLE;
                     DAC_DAT_REG <= (others => '0');
                     DAC_DAT_VAL <= '0';
                     UART_DAC_STATE<= "00";
-                    
-           END CASE;         
+           END CASE;       
         END IF;
     
     END PROCESS;
