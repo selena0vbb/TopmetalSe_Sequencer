@@ -38,7 +38,10 @@ entity clock_sequencer is
     RESET   : IN std_logic;
    
     ENABLE  : IN std_logic;
+    
+    STOP_ADDR : IN integer; --used to signal a stop at a certain address, set it higher than 10,000 to disable
    
+    
     --OUTPUTS
     LA_ROW_SHIFT    : OUT std_logic;
     LA_COL_SHIFT    : OUT std_logic;
@@ -70,7 +73,9 @@ architecture Behavioral of clock_sequencer is
     TYPE driveState_t IS (S0, S1, S2, COL_SHIFT, ROW_SHIFT);
     SIGNAL driveState      : driveState_t;
     
+    SIGNAL pxl_addr : integer := 0; 
     
+    SIGNAL SPEAK : std_logic := '1';
 BEGIN
    TM_CLK_BUF <= CLK;
    LA_ROW_SHIFT <= LA_ROW_SHIFT_BUF;
@@ -89,8 +94,11 @@ BEGIN
             driveState <= S0;
             LA_ROW_SHIFT_BUF <= '0';
             LA_COL_SHIFT_BUF <= '0';
-            
+            pxl_addr <= 0;
+            SPEAK <= '1';
         ELSIF FALLING_EDGE(CLK) THEN
+            IF SPEAK = '1' THEN 
+            
             CASE driveState IS 
             
             WHEN S0 =>
@@ -107,8 +115,11 @@ BEGIN
                 ROW_DAT_IN <='1';
                 COL_DAT_IN <='1';
                 
-                driveState <=S2;
                 
+                IF pxl_addr /= stop_addr THEN
+                    driveState<= S2;
+                END IF;
+          
             WHEN S2 =>
                 
                 ROW_DAT_IN<='0';
@@ -117,9 +128,24 @@ BEGIN
                 LA_ROW_SHIFT_BUF <= '0';
                 
                 COL_ADDR <= COL_ADDR + 1;
-                driveState <= COL_SHIFT;
+                IF pxl_addr /= stop_addr then 
+                    driveState <= COL_SHIFT;
+                    pxl_addr <= pxl_addr +1;
+                ELSE
+                    LA_ROW_SHIFT_BUF <= '0';
+                    LA_COL_SHIFT_BUF <= '0';
+                    SPEAK <= '0';
+                END IF;
             WHEN COL_SHIFT =>
                 --ROW_DAT_IN <= '0';
+                IF pxl_addr = stop_addr then
+                    LA_ROW_SHIFT_BUF <= '0';
+                    LA_COL_SHIFT_BUF <= '0';
+                    SPEAK <= '0';
+                END IF;
+                
+                
+                pxl_addr <= pxl_addr +1;
                 
                 IF (COL_ADDR >= 99) THEN
                     
@@ -147,15 +173,17 @@ BEGIN
                     ROW_ADDR<="00000000";
                     
                     driveState<=COL_SHIFT;
+                    pxl_addr <= 0;
                 ELSE
 
                     ROW_ADDR <= ROW_ADDR + 1;
                     driveState<=COL_SHIFT;
  
                 END IF;
+
             END CASE;
             
-            
+            END IF;
         END IF;
    
    END process;

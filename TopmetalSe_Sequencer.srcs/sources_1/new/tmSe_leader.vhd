@@ -97,11 +97,11 @@ architecture Behavioral of tmSe_leader is
     SIGNAL DAC_DAT_REG : std_logic_vector(31 downto 0); --Stores 32 bit incoming data from UART, used for DAC SPI, UART IS 8 bits at a time
     SIGNAL DAC_DAT_VAL : std_logic; 
     
-    TYPE bridgeState_s IS (IDLE, DAC_PROGRAM, DAT_IN0, DAT_IN1, DAT_IN2, DAT_IN3, STOP, SPI_WAIT, S_RESET);
+    TYPE bridgeState_s IS (IDLE, LA_READ0, LA_READ1, LA_RESET, DAC_PROGRAM, DAT_IN0, DAT_IN1, DAT_IN2, DAT_IN3, STOP, SPI_WAIT, S_RESET);
     
     SIGNAL bridgeState : bridgeState_s := IDLE;
     
-    SIGNAL LARGE_ARRAY_ENABLE : std_logic := '1';
+
     
     SIGNAL wait_cycle : integer := 8000; -- clock cycles to wait after reading in UART before resetting (need for writing to SPI)
     
@@ -117,12 +117,17 @@ architecture Behavioral of tmSe_leader is
     
     SIGNAL LED_BUF    : std_logic_vector(31 downto 0);
     
+    SIGNAL LA_UART_REG : std_logic_vector (15 downto 0);
+    SIGNAL LA_PXL_STOP_ADDR : integer := 5;
+    SIGNAL LARGE_ARRAY_ENABLE : std_logic := '1';
+    
     --DEVICES
     COMPONENT clock_sequencer
        PORT(
         CLK     : IN std_logic;
         RESET   : IN std_logic;
         ENABLE  : IN std_logic;
+        STOP_ADDR : IN integer;
         --OUTPUTS
         LA_ROW_SHIFT    : OUT std_logic;
         LA_COL_SHIFT    : OUT std_logic;
@@ -171,6 +176,7 @@ BEGIN
     CLK           => EXTERN_CLK,
     RESET         => RESET,
     ENABLE        => LARGE_ARRAY_ENABLE,
+    STOP_ADDR     => LA_PXL_STOP_ADDR,
     LA_ROW_SHIFT  => LA_ROW_SHIFT_BUF,
     LA_COL_SHIFT  => LA_COL_SHIFT_BUF,
     ROW_DAT_IN    => LA_ROW_DAT_BUF,
@@ -291,13 +297,30 @@ BEGIN
                                 SA_USE_SWITCH <= '0';
                                 bridgeState <= S_RESET;
                         ELSIF UART_REG(3 downto 0) = "0100" THEN -- LARGE ARRAY SELECT
-                            --program later
+                            bridgeState <=LA_READ0;
+                            LARGE_ARRAY_ENABLE <= '0';
+
                         ELSIF UART_REG(3 downto 0) = "1100" THEN --TURN ON CLOCKING
-                            --program later
-                          
+                            LARGE_ARRAY_ENABLE <= '0';
+
                         END IF;
                     
                     END IF;
+                WHEN LA_READ0 =>
+                    IF UART_RX_VALID = '1' THEN
+                        LA_UART_REG (7 downto 0) <= UART_REG;
+                        bridgeState <= LA_READ1;
+                     END IF;
+                WHEN LA_READ1 =>
+                    IF UART_RX_VALID = '1' THEN
+                        LA_UART_REG (15 downto 8) <= UART_REG;
+                        bridgeState <= LA_RESET;
+                        
+                    END IF;
+                WHEN LA_RESET => 
+                    LA_PXL_STOP_ADDR <= to_integer(unsigned(LA_UART_REG));
+                    LARGE_ARRAY_ENABLE <= '1';
+                    bridgeState <= IDLE;
 				WHEN DAC_PROGRAM =>
                     IF UART_RX_VALID = '1' THEN
                         IF UART_DAC_STATE = "00" THEN
