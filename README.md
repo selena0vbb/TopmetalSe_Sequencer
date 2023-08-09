@@ -21,7 +21,7 @@ D3 D2 D1 D0 0001 - Small Array Pixel Selection via UART
 
 xxxx0011 - Small Array Pixel Selection via Hardware Switches
 
-xxxx0100 - Large Array Pixel Selection + 16 bits [D15 - D0]
+xxxx0100 - Large Array Pixel Selection + 16 bits (D15 - D0)
 
 The DAC SPI writing is primarily described below as well as in the TI DAC 8568 manual, but the important thing is that after the first word is sent (8 bits), 4 more words are required (32 bits), where the 32 bits are described the manual.
 
@@ -30,6 +30,8 @@ The SA Pixel selection via Hardware sets it such that the switches on the Basys 
 The SA Pixel Selection via UART uses the first 4 bits of the initial 8 bit word as data bits. D3 to D0 are then used as an unsigned integer to describe the pixel number (p0 to p8).
 
 The LA Pixel Selection via UART uses two more words of 8 bits to set the pixel number as an unsigned integer. Setting these data bits > 10,000 will turn the pixel scan on.
+
+The code to control the whole system is in https://github.com/selena0vbb/TopmetalSeDrone
 
 # SPI Control for TI DAC 8568
 Inside util/, I include a python script which generates the 32-bit values to control a [Texas Instruments DAC 8568](https://www.ti.com/product/DAC8568?utm_source=google&utm_medium=cpc&utm_campaign=asc-null-null-GPN_EN-cpc-pf-google-wwe&utm_content=DAC8568&ds_k=DAC8568&DCM=yes&gclid=EAIaIQobChMIwIbj3O62_wIV-y-tBh3P_wriEAAYASAAEgLwtPD_BwE&gclsrc=aw.ds).
