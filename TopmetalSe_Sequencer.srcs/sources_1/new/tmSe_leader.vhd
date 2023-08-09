@@ -40,8 +40,8 @@ entity tmSe_leader is
     
     USB_SERIAL      : IN std_logic;
     
-    SA_COL          : IN STD_LOGIC_VECTOR( 2 downto 0);
-    SA_ROW          : IN STD_LOGIC_VECTOR( 2 downto 0);
+    SA_COL_SWITCH          : IN STD_LOGIC_VECTOR( 2 downto 0); --switches
+    SA_ROW_SWITCH          : IN STD_LOGIC_VECTOR( 2 downto 0); --switches
     
     
     --OUTPUTS
@@ -118,7 +118,7 @@ architecture Behavioral of tmSe_leader is
     SIGNAL LED_BUF    : std_logic_vector(31 downto 0);
     
     SIGNAL LA_UART_REG : std_logic_vector (15 downto 0);
-    SIGNAL LA_PXL_STOP_ADDR : integer := 5;
+    SIGNAL LA_PXL_STOP_ADDR : integer := 12000;
     SIGNAL LARGE_ARRAY_ENABLE : std_logic := '1';
     
     --DEVICES
@@ -140,6 +140,21 @@ architecture Behavioral of tmSe_leader is
     );
     END COMPONENT;
     
+    COMPONENT SA_Sequencer
+        PORT(  
+          INTERN_CLK : IN std_logic;
+          RESET      : IN std_logic;
+          USE_SWITCH : IN std_logic;
+          SA_PXL_ADDR: IN std_logic_vector(3 downto 0);
+          
+          ROW_SWITCH : IN std_logic_vector(2 downto 0);
+          COL_SWITCH : IN std_logic_vector(2 downto 0);
+          
+          SA_ROW_OUT : OUT std_logic_vector(2 downto 0);
+          SA_COL_OUT : OUT std_logic_vector(2 downto 0)
+
+        );
+    END COMPONENT;
     COMPONENT uart_rx --8 bit UART receiver
         PORT(
 		i_CLK       : in std_logic; --in clock
@@ -187,6 +202,19 @@ BEGIN
     COL_CLK       => LA_COL_CLK
     );
     
+    SA_Seq: SA_Sequencer PORT MAP(
+    
+    INTERN_CLK => INTERN_CLK,
+    RESET => RESET,
+    USE_SWITCH => SA_USE_SWITCH,
+    SA_PXL_ADDR => SA_PXL_ADDR,
+    ROW_SWITCH=> SA_ROW_SWITCH,
+    COL_SWITCH=> SA_COL_SWITCH,
+    SA_ROW_OUT=> SA_ROW_OUT,
+    SA_COL_OUT=> SA_COL_OUT
+
+    );
+    
     --Instantiate a UART, and SPI for a UART-SPI Bridge
     
     UART_RX_USB : uart_rx PORT MAP(
@@ -208,57 +236,6 @@ BEGIN
     SYNC_OUT => SPI_SYNC,
     SCLK => SPI_SCLK
     );  
-    
-    
-    SA_PIXL_SELECT: process(INTERN_CLK, SA_USE_SWITCH)
-    BEGIN --delay for small array
-        IF FALLING_EDGE(INTERN_CLK) then
-            IF (SA_USE_SWITCH = '1') THEN
-                --use hardware switches
-                SA_ROW_BUF <= SA_ROW;
-                SA_COL_BUF <= SA_COL;
-            
-                SA_ROW_OUT <= SA_ROW_BUF;
-                SA_COL_OUT <= SA_COL_BUF;
-                
-            ELSIF (SA_USE_SWITCH = '0') THEN
-                --lazy solution for now
-                IF SA_PXL_ADDR = "1000" THEN --pixel 8
-                    SA_ROW_OUT <= "100";
-                    SA_COL_OUT <= "100";
-                ELSIF SA_PXL_ADDR = "0111" THEN --pixel 7
-                    SA_ROW_OUT <= "100";
-                    SA_COL_OUT <= "010";
-                ELSIF SA_PXL_ADDR = "0110" THEN --pixel 6
-                    SA_ROW_OUT<= "100";
-                    SA_COL_OUT<= "001";
-                    
-                ELSIF SA_PXL_ADDR = "0101" THEN --pixel 5
-                    SA_ROW_OUT <= "010";
-                    SA_COL_OUT <= "100";
-                ELSIF SA_PXL_ADDR = "0100" THEN --pixel 4
-                    SA_ROW_OUT<= "010";
-                    SA_COL_OUT<= "010";
-                ELSIF SA_PXL_ADDR = "0011" THEN --pixel 3
-                    SA_ROW_OUT<= "010";
-                    SA_COL_OUT<= "001";
-                
-                ELSIF SA_PXL_ADDR = "0010" THEN --pixel 2
-                    SA_ROW_OUT <= "001";
-                    SA_COL_OUT <= "100";
-                ELSIF SA_PXL_ADDR = "0100" THEN --pixel 1
-                    SA_ROW_OUT<= "001";
-                    SA_COL_OUT<= "010";
-                ELSIF SA_PXL_ADDR = "0011" THEN --pixel 0
-                    SA_ROW_OUT<= "001";
-                    SA_COL_OUT<= "001";  
-      
-                END IF;
-            
-            END IF;
-        END IF;
-    END PROCESS;
-    
     
     
     UART_SPI_DAC: process(INTERN_CLK, UART_RX_VALID, RESET)

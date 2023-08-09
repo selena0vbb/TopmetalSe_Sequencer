@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="28.973747019 ms"></ZoomEndTime>
-      <Cursor1Time time="7.283035000 ms"></Cursor1Time>
+      <ZoomEndTime time="40.729205237 ms"></ZoomEndTime>
+      <Cursor1Time time="10.000000000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="250"></NameColumnWidth>
-      <ValueColumnWidth column_width="68"></ValueColumnWidth>
+      <NameColumnWidth column_width="248"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="24" />
+   <WVObjectSize size="28" />
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -117,5 +117,21 @@
       <obj_property name="ElementShortName">LA_UART_REG[15:0]</obj_property>
       <obj_property name="ObjectShortName">LA_UART_REG[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SA_PXL_VAL">
+      <obj_property name="ElementShortName">SA_PXL_VAL</obj_property>
+      <obj_property name="ObjectShortName">SA_PXL_VAL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SA_USE_SWITCH">
+      <obj_property name="ElementShortName">SA_USE_SWITCH</obj_property>
+      <obj_property name="ObjectShortName">SA_USE_SWITCH</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/SA_ROW_OUT">
+      <obj_property name="ElementShortName">SA_ROW_OUT[2:0]</obj_property>
+      <obj_property name="ObjectShortName">SA_ROW_OUT[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/SA_COL_OUT">
+      <obj_property name="ElementShortName">SA_COL_OUT[2:0]</obj_property>
+      <obj_property name="ObjectShortName">SA_COL_OUT[2:0]</obj_property>
    </wvobject>
 </wave_config>

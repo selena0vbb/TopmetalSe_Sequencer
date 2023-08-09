@@ -88,7 +88,7 @@ BEGIN
    COL_CLK <= CLK;
    
    
-   LA_clock: PROCESS(CLK, RESET)
+   LA_clock: PROCESS(CLK, RESET, ENABLE)
    BEGIN
         IF RESET = '1' or ENABLE = '0' THEN
             driveState <= S0;

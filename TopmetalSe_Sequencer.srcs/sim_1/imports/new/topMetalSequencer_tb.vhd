@@ -48,8 +48,8 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
     
     USB_SERIAL      : IN std_logic;
     
-    SA_COL          : IN STD_LOGIC_VECTOR( 2 downto 0);
-    SA_ROW          : IN STD_LOGIC_VECTOR( 2 downto 0);
+    SA_COL_SWITCH          : IN STD_LOGIC_VECTOR( 2 downto 0);
+    SA_ROW_SWITCH          : IN STD_LOGIC_VECTOR( 2 downto 0);
     
     
     --OUTPUTS
@@ -214,8 +214,8 @@ BEGIN
     RESET => RESET, 
     
     USB_SERIAL  => USB_SERIAL,
-    SA_COL => SA_COL_IN,
-    SA_ROW => SA_ROW_IN,
+    SA_COL_SWITCH => SA_COL_IN,
+    SA_ROW_SWITCH => SA_ROW_IN,
     CONFIGURE_LED => CONFIG_LED,
     
     --OUTPUTS
@@ -292,7 +292,7 @@ BEGIN
     WAIT FOR 0.1ms;
     RESET <= '0';
     WAIT FOR EXTERN_CLK_PERIOD;
-    UART_WRITE_BYTE("01010100", USB_SERIAL);
+    UART_WRITE_BYTE("00010001", USB_SERIAL);
     WAIT FOR 2ms;
     UART_WRITE_BYTE("00100001", USB_SERIAL);
 

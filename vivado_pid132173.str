@@ -1,0 +1,520 @@
+/*
+
+AMD Vivado v2023.1 (64-bit) [Major: 2023, Minor: 1]
+SW Build: 3865809 on Sun May  7 15:04:56 MDT 2023
+IP Build: 3864474 on Sun May  7 20:36:21 MDT 2023
+IP Build: 3864474 on Sun May  7 20:36:21 MDT 2023
+
+Process ID (PID): 132173
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Tue Aug 08 16:23:43 PDT 2023
+Time zone: 	Pacific Standard Time (America/Los_Angeles)
+
+OS: Ubuntu
+OS Version: 5.19.0-32-generic
+OS Architecture: amd64
+Available processors (cores): 2
+
+Display: 0
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+OS font scaling: 100%
+
+Java version: 	17.0.3 64-bit
+JavaFX version: 17.0.1
+Java home: 	/home/selena/Vivado/2023.1/tps/lnx64/jre17.0.3_7
+Java executable: 	/home/selena/Vivado/2023.1/tps/lnx64/jre17.0.3_7/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, -XX:+UseStringDeduplication, -XX:MaxGCPauseMillis=200, -XX:+ParallelRefProcEnabled, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=80m, -XX:MaxNewSize=80m, -Xms512m, -Xmx4072m, -Xss10m, -Xrs]
+Java initial memory (-Xms): 	512 MB
+Java maximum memory (-Xmx):	 3 GB
+
+User name: 	selena
+User home directory: /home/selena
+User working directory: /home/selena/TopmetalSe_Sequencer
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /home/selena/Vivado
+HDI_APPROOT: /home/selena/Vivado/2023.1
+RDI_DATADIR: /home/selena/Vivado/2023.1/data
+RDI_BINDIR: /home/selena/Vivado/2023.1/bin
+
+Vivado preferences file: /home/selena/.Xilinx/Vivado/2023.1/vivado.xml
+Vivado preferences directory: /home/selena/.Xilinx/Vivado/2023.1/
+Vivado layouts directory: /home/selena/.Xilinx/Vivado/2023.1/data/layouts
+PlanAhead jar file: 	/home/selena/Vivado/2023.1/lib/classes/planAhead.jar
+Vivado log file: 	/home/selena/TopmetalSe_Sequencer/vivado.log
+Vivado journal file: 	/home/selena/TopmetalSe_Sequencer/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-132173-selena-ThinkPad-E455
+Non-Default Parameters:	[]
+
+Xilinx & AMD Environment Variables
+--------------------------------------------------------------------------------------------
+GNOME_SHELL_SESSION_MODE: ubuntu
+RDI_APPROOT: /home/selena/Vivado/2023.1
+RDI_BASEROOT: /home/selena/Vivado
+RDI_BINROOT: /home/selena/Vivado/2023.1/bin
+RDI_BUILD: yes
+RDI_DATADIR: /home/selena/Vivado/2023.1/data
+RDI_INSTALLROOT: /home/selena
+RDI_INSTALLVER: 2023.1
+RDI_JAVA_PLATFORM: 
+RDI_JAVA_VERSION: 17.0.3_7
+RDI_LIBDIR: /home/selena/Vivado/2023.1/lib/lnx64.o/Ubuntu:/home/selena/Vivado/2023.1/lib/lnx64.o
+RDI_OPT_EXT: .o
+RDI_PATCHROOT: 
+RDI_PLATFORM: lnx64
+RDI_PREPEND_PATH: /home/selena/Vivado/2023.1/ids_lite/ISE/bin/lin64
+RDI_PROG: /home/selena/Vivado/2023.1/bin/unwrapped/lnx64.o/vivado
+RDI_SESSION_INFO: /home/selena/TopmetalSe_Sequencer:selena-ThinkPad-E455_1691536980_132132
+RDI_SHARED_DATA: /home/selena/SharedData/2023.1/data
+RDI_TPS_ROOT: /home/selena/Vivado/2023.1/tps/lnx64
+RDI_USE_JDK17: True
+SHELL: /bin/bash
+XILINX: /home/selena/Vivado/2023.1/ids_lite/ISE
+XILINX_DSP: /home/selena/Vivado/2023.1/ids_lite/ISE
+XILINX_HLS: /home/selena/Vitis_HLS/2023.1
+XILINX_PLANAHEAD: /home/selena/Vivado/2023.1
+XILINX_VITIS: 
+XILINX_VIVADO: /home/selena/Vivado/2023.1
+XILINX_VIVADO_HLS: /home/selena/Vivado/2023.1
+
+
+GUI allocated memory:	512 MB
+GUI max memory:		4,072 MB
+Engine allocated memory: 1,300 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// WARNING: HEventQueue.dispatchEvent() is taking  1534 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,315 MB. GUI used memory: 66 MB. Current time: 8/8/23, 4:23:44 PM PDT
+selectList(PAResourceQtoS.SyntheticaGettingStartedView_RECENT_PROJECTS, "/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.xpr", 0); // b.c
+// Opening Vivado Project: /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.xpr. Version: Vivado v2023.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.xpr 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,465 MB. GUI used memory: 64 MB. Current time: 8/8/23, 4:23:59 PM PDT
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,591 MB. GUI used memory: 64 MB. Current time: 8/8/23, 4:24:14 PM PDT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 97 MB (+99317kb) [00:01:03]
+// [Engine Memory]: 1,609 MB (+1535547kb) [00:01:03]
+// [GUI Memory]: 140 MB (+39970kb) [00:01:06]
+// [Engine Memory]: 1,734 MB (+46706kb) [00:01:06]
+// WARNING: HEventQueue.dispatchEvent() is taking  10172 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1855 ms.
+// Tcl Message: open_project /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/selena/Vivado/2023.1/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:57 ; elapsed = 00:00:40 . Memory (MB): peak = 7775.727 ; gain = 378.797 ; free physical = 645 ; free virtual = 12435 
+// Project name: TopmetalSe_Sequencer; location: /home/selena/TopmetalSe_Sequencer; part: xc7a35tcpg236-1
+// Elapsed time: 47 seconds
+dismissDialog("Open Project"); // bq
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed Time for: 'L.f': 28s
+// Elapsed time: 15 seconds
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation]", 9); // f
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation]", 9); // f
+// HMemoryUtils.trashcanNow. Engine heap size: 1,769 MB. GUI used memory: 70 MB. Current time: 8/8/23, 4:24:50 PM PDT
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Create Block Design]", 6, false); // f
+// Run Command: PAResourceCommand.PACommandNames_CREATE_NEW_DIAGRAM
+// TclEventType: DG_GRAPH_STALE
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Create Block Design"); // ax
+// TclEventType: LOAD_FEATURE
+// Tcl Message: create_bd_design "design_1" 
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// Tcl Message: Wrote  : </home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd>  
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: RSB_OPEN_DIAGRAM
+// WARNING: HEventQueue.dispatchEvent() is taking  3433 ms.
+// Elapsed time: 10 seconds
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // t
+// HMemoryUtils.trashcanNow. Engine heap size: 1,800 MB. GUI used memory: 73 MB. Current time: 8/8/23, 4:25:05 PM PDT
+// Tcl Message: create_bd_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:09 . Memory (MB): peak = 7833.203 ; gain = 21.781 ; free physical = 597 ; free virtual = 12395 
+// TclEventType: FILE_SET_CHANGE
+dismissDialog("Create Block Design"); // bq
+// Elapsed Time for: 'L.f': 45s
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'L.f': 54s
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed Time for: 'L.f': 56s
+// Elapsed Time for: 'L.f': 58s
+// Elapsed time: 18 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Generate Block Design]", 8, false); // f
+// Run Command: PAResourceCommand.PACommandNames_GENERATE_RSB_DESIGN
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_GENERATE_OUTPUT_PRODUCTS_IMMEDIATELY, "Generate"); // a
+// 'bv' command handler elapsed time: 6 seconds
+// [Engine Memory]: 1,829 MB (+8982kb) [00:02:16]
+selectButton("OptionPane.button", "OK"); // JButton
+selectButton(PAResourceQtoS.SystemBuilderView_ADD_IP, "System_RSB_ADD_IP"); // B
+// WARNING: HEventQueue.dispatchEvent() is taking  1070 ms.
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Open Block Design]", 7, false); // f
+// Run Command: PAResourceCommand.PACommandNames_OPEN_BLOCK_DESIGN
+// TclEventType: RSB_OPEN_DIAGRAM
+// Tcl Message: open_bd_design {/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd} 
+dismissDialog("Open Block Design"); // bq
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Generate Block Design]", 8, false); // f
+// Run Command: PAResourceCommand.PACommandNames_GENERATE_RSB_DESIGN
+collapseTree(PAResourceQtoS.SimpleOutputProductDialog_OUTPUT_PRODUCT_TREE, "[root, design_1.bd]", 0); // W.c
+expandTree(PAResourceQtoS.SimpleOutputProductDialog_OUTPUT_PRODUCT_TREE, "[root, design_1.bd]", 0); // W.c
+selectRadioButton(PAResourceQtoS.SimpleOutputProductDialog_SYNTHESIZE_DESIGN_GLOBALLY, "Global"); // a
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_GENERATE_OUTPUT_PRODUCTS_IMMEDIATELY, "Generate"); // a
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJ_DESIGN_MODE_SET
+// Tcl Message: set_property synth_checkpoint_mode None [get_files  /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd] 
+// TclEventType: PROJ_DESIGN_MODE_SET
+// [Engine Memory]: 1,962 MB (+43787kb) [00:02:39]
+// WARNING: HEventQueue.dispatchEvent() is taking  1459 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,963 MB. GUI used memory: 76 MB. Current time: 8/8/23, 4:25:54 PM PDT
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// Tcl Message: generate_target all [get_files  /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd] 
+// Tcl Message: Wrote  : </home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd>  Wrote  : </home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/ui/bd_1f5defd0.ui>  
+// TclEventType: FILE_SET_CHANGE
+// [Engine Memory]: 2,123 MB (+65924kb) [00:02:56]
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: Verilog Output written to : /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/synth/design_1.v Verilog Output written to : /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/sim/design_1.v Verilog Output written to : /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: Exporting to file /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh Generated Hardware Definition File /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/synth/design_1.hwdef 
+// Tcl Message: generate_target: Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 8158.000 ; gain = 160.656 ; free physical = 382 ; free virtual = 12187 
+// Tcl Message: export_ip_user_files -of_objects [get_files /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,124 MB. GUI used memory: 76 MB. Current time: 8/8/23, 4:26:14 PM PDT
+// TclEventType: PROJECT_CHANGE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,124 MB. GUI used memory: 76 MB. Current time: 8/8/23, 4:26:21 PM PDT
+// Elapsed Time for: 'W.b': 34s
+// 'bv' command handler elapsed time: 42 seconds
+// Elapsed time: 36 seconds
+selectButton("OptionPane.button", "OK"); // JButton
+// Elapsed Time for: 'L.f': 02m:08s
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Open Block Design]", 7, false); // f
+// Run Command: PAResourceCommand.PACommandNames_OPEN_BLOCK_DESIGN
+// TclEventType: RSB_OPEN_DIAGRAM
+// Tcl Message: open_bd_design {/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd} 
+dismissDialog("Open Block Design"); // bq
+// [GUI Memory]: 155 MB (+7940kb) [00:03:16]
+selectTree(PAResourceQtoS.SystemTreeView_SYSTEM_TREE, "[design_1]", 0, false); // a
+selectTree(PAResourceQtoS.SystemTreeView_SYSTEM_TREE, "[design_1]", 0, false, false, false, false, false, true); // a - Double Click
+selectTree(PAResourceQtoS.SystemTreeView_SYSTEM_TREE, "[design_1]", 0, false, false, false, false, true, false); // a - Popup Trigger
+selectMenuItem(PAResourceCommand.PACommandNames_OPEN_HIERARCHY_BLOCK, "Diagram"); // ao
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HIERARCHY_BLOCK
+selectButton(PAResourceCommand.PACommandNames_ZOOM_FIT, "System_zoom_fit"); // B
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_FIT
+selectButton(PAResourceQtoS.SystemBuilderView_ADD_IP, (String) null); // B
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Generate Block Design]", 8, false); // f
+// Run Command: PAResourceCommand.PACommandNames_GENERATE_RSB_DESIGN
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_CLOSE_DIALOG_UNSAVED_CHANGES_WILL, "Cancel"); // a
+// 'bv' command handler elapsed time: 3 seconds
+dismissDialog("Generate Output Products"); // W
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aa
+// PAPropertyPanels.initPanels (tmSe_leader.vhd) elapsed time: 0.5s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, tmSe_leader(Behavioral) (tmSe_leader.vhd)]", 1, true); // E - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, tmSe_leader(Behavioral) (tmSe_leader.vhd)]", 1, true, false, false, false, true, false); // E - Popup Trigger - Node
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_ADD_MODULE_TO_BD, "Add Module to Block Design"); // ao
+// Run Command: PAResourceCommand.PACommandNames_ADD_MODULE_TO_BD
+// TclEventType: LOAD_FEATURE
+// Tcl Message: create_bd_cell -type module -reference tmSe_leader tmSe_leader_0 
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: RSB_REMOVE_ADDRNETWORK
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: RSB_ADD_OBJECT
+dismissDialog("Add Module"); // bq
+// Elapsed Time for: 'L.f': 02m:40s
+selectButton(PAResourceQtoS.RSBApplyAutomationBar_RUN_CONNECTION_AUTOMATION, "Run Connection Automation"); // g
+// Elapsed Time for: 'L.f': 02m:50s
+// PAPropertyPanels.initPanels (tmSe_leader_0) elapsed time: 0.3s
+// Run Command: PAResourceCommand.PACommandNames_CUSTOMIZE_RSB_BLOC
+// Elapsed time: 15 seconds
+selectCheckBox(PAResourceEtoH.HACGCIPSymbol_SHOW_DISABLED_PORTS, "Show disabled ports", false); // f: FALSE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,147 MB. GUI used memory: 82 MB. Current time: 8/8/23, 4:27:19 PM PDT
+selectCheckBox(PAResourceEtoH.HACGCIPSymbol_SHOW_DISABLED_PORTS, "Show disabled ports", true); // f: TRUE
+selectCheckBox(PAResourceEtoH.HACGCIPSymbol_SHOW_DISABLED_PORTS, "Show disabled ports", false); // f: FALSE
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Re-customize Module Reference"); // m
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, tmSe_leader(Behavioral) (tmSe_leader.vhd)]", 1); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, tmSe_leader(Behavioral) (tmSe_leader.vhd)]", 1, true); // E - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, tmSe_leader(Behavioral) (tmSe_leader.vhd)]", 1, true, false, false, false, false, true); // E - Double Click - Node
+selectCodeEditor("tmSe_leader.vhd", 428, 172); // ad
+selectCodeEditor("tmSe_leader.vhd", 428, 172, false, false, false, false, true); // ad - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "System", 0); // o
+selectView(PAResourceOtoP.PAViews_SYSTEM, "System", 454, 183, 923, 443, false, false, false, true, false); // fQ - Popup Trigger
+// Run Command: PAResourceCommand.PACommandNames_PROPERTIES_WINDOW
+// TclEventType: RSB_CANVAS_LOCATION
+// TclEventType: RSB_BLOCK_SIZE
+// TclEventType: RSB_CANVAS_LOCATION
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "Properties", 1); // g
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "IP", 2); // g
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "Properties", 1); // g
+selectTab(RDIResource.PropertiesView_TABBED_PANE, (HResource) null, "General", 0); // g
+// RDIResource.RDIViews_PROPERTIES: Block Properties: close view
+// PAPropertyPanels.initPanels (LA_ROW_SHIFT) elapsed time: 0.3s
+// Tcl Command: 'set_property location {0.5 -213 33} [get_bd_cells tmSe_leader_0]'
+// TclEventType: RSB_CANVAS_LOCATION
+// Tcl Message: set_property location {0.5 -213 33} [get_bd_cells tmSe_leader_0] 
+selectView(PAResourceOtoP.PAViews_SYSTEM, "System", 167, 200, 923, 443, false, false, false, true, false); // fQ - Popup Trigger
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, tmSe_leader(Behavioral) (tmSe_leader.vhd)]", 1, true); // E - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1 (design_1.bd)]", 2); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1 (design_1.bd), design_1 (design_1.v)]", 3, false); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1 (design_1.bd), design_1 (design_1.v)]", 3, false, false, false, false, false, true); // E - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1 (design_1.bd)]", 2, true); // E - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1 (design_1.bd)]", 2, true, false, false, false, false, true); // E - Double Click - Node
+// TclEventType: RSB_OPEN_DIAGRAM
+// Tcl Message: open_bd_design {/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd} 
+dismissDialog("Open Block Design"); // bq
+// HMemoryUtils.trashcanNow. Engine heap size: 2,241 MB. GUI used memory: 83 MB. Current time: 8/8/23, 4:27:54 PM PDT
+// [Engine Memory]: 2,241 MB (+12381kb) [00:04:40]
+// Tcl Command: 'set_property location {1.5 83 20} [get_bd_cells tmSe_leader_0]'
+// TclEventType: RSB_CANVAS_LOCATION
+// Tcl Message: set_property location {1.5 83 20} [get_bd_cells tmSe_leader_0] 
+selectView(PAResourceOtoP.PAViews_SYSTEM, "System", 413, 221, 923, 443, false, false, false, true, false); // fQ - Popup Trigger
+// Run Command: RDIResourceCommand.RDICommands_DELETE
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_REMOVE_ADDRNETWORK
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_REMOVE_OBJECT
+// TclEventType: REPORT_IP_STATUS_STALE
+// Tcl Message: delete_bd_objs [get_bd_cells tmSe_leader_0] 
+// Elapsed Time for: 'L.f': 03m:40s
+// [Engine Memory]: 2,528 MB (+182969kb) [00:04:48]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, tmSe_leader(Behavioral) (tmSe_leader.vhd)]", 1, true); // E - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1 (design_1.bd)]", 2, true); // E - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1 (design_1.bd)]", 2, true, false, false, false, true, false); // E - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_OPEN_FILE_WITH, "Open With"); // al
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // al
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // al
+selectMenuItem(PAResourceCommand.PACommandNames_GENERATE_COMPOSITE_FILE, "Generate Output Products..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_GENERATE_COMPOSITE_FILE
+// Elapsed Time for: 'L.f': 03m:52s
+selectRadioButton(PAResourceQtoS.SimpleOutputProductDialog_SYNTHESIZE_ALL_IP_INCLUDING_IP_CONTAINED, "Out of context per Block Design"); // a
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_APPLY_OPTIONS_AND_DISMISS_DIALOG_WITHOUT, "Apply"); // a
+// TclEventType: PROJ_DESIGN_MODE_SET
+// WARNING: HEventQueue.dispatchEvent() is taking  1309 ms.
+// Tcl Message: set_property synth_checkpoint_mode Singular [get_files  /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd] 
+// HMemoryUtils.trashcanNow. Engine heap size: 2,639 MB. GUI used memory: 86 MB. Current time: 8/8/23, 4:28:20 PM PDT
+dismissDialog("Apply Synthesis Option"); // bq
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_GENERATE_OUTPUT_PRODUCTS_IMMEDIATELY, "Generate"); // a
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// Tcl Message: generate_target all [get_files  /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd] 
+// Tcl Message: Wrote  : </home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd>  Wrote  : </home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/ui/bd_1f5defd0.ui>  
+// Tcl Message: Verilog Output written to : /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/synth/design_1.v Verilog Output written to : /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/sim/design_1.v 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SAVE_DIAGRAM
+// TclEventType: REPORT_IP_STATUS_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_SCRIPT_TASK
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: Verilog Output written to : /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// Tcl Message: Exporting to file /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh Generated Hardware Definition File /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.gen/sources_1/bd/design_1/synth/design_1.hwdef 
+// Tcl Message: export_ip_user_files -of_objects [get_files /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet 
+// TclEventType: PROJECT_CHANGE
+// Tcl Message: INFO: [Vivado 12-23855] The given sub-design is auto disabled, no action will be taken: '/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/bd/design_1/design_1.bd' 
+// TclEventType: PROJECT_CHANGE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// 'bv' command handler elapsed time: 27 seconds
+// Elapsed time: 16 seconds
+dismissDialog("Managing Output Products"); // bq
+collapseTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 13); // f
+expandTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design]", 13); // f
+// Elapsed Time for: 'L.f': 04m:20s
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Run Linter]", 12, false); // f
+// Tcl Message: synth_design -top tmSe_leader -part xc7a35tcpg236-1 -lint  
+// Tcl Message: Command: synth_design -top tmSe_leader -part xc7a35tcpg236-1 -lint Starting synth_design Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t' 
+// Tcl Message: INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t' 
+// TclEventType: ELABORATE_START
+// HMemoryUtils.trashcanNow. Engine heap size: 2,701 MB. GUI used memory: 85 MB. Current time: 8/8/23, 4:28:59 PM PDT
+// TclEventType: ELABORATE_FINISH
+// HMemoryUtils.trashcanNow. Engine heap size: 2,930 MB. GUI used memory: 85 MB. Current time: 8/8/23, 4:29:14 PM PDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,930 MB. GUI used memory: 85 MB. Current time: 8/8/23, 4:29:15 PM PDT
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: POWER_CNS_STALE
+// TclEventType: POWER_REPORT_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: PLACEDB_MODIFY_PRE
+// TclEventType: DESIGN_NEW_FAILED
+// TclEventType: LINTER_RUN
+// Tcl Message: INFO: [Device 21-403] Loading part xc7a35tcpg236-1 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Starting RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 8863.395 ; gain = 377.688 ; free physical = 163 ; free virtual = 11723 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Clean up Linter database... 
+// Tcl Message: INFO: [Synth 8-638] synthesizing module 'tmSe_leader' [/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/new/tmSe_leader.vhd:73] INFO: [Synth 8-3491] module 'clock_sequencer' declared at '/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/new/clock_sequencer.vhd:34' bound to instance 'CLK_SEQ' of component 'clock_sequencer' [/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/new/tmSe_leader.vhd:175] INFO: [Synth 8-638] synthesizing module 'clock_sequencer' [/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/sources_1/new/clock_sequencer.vhd:63] 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: Finished RTL Elaboration : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 8953.145 ; gain = 467.438 ; free physical = 149 ; free virtual = 11620 
+// Tcl Message: --------------------------------------------------------------------------------- 
+// Tcl Message: INFO: [Synth 37-85] Total of 18 linter message(s) generated. INFO: [Synth 37-45] Linter Run Finished! 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 8953.145 ; gain = 0.000 ; free physical = 153 ; free virtual = 11613 
+// Tcl Message: INFO: [Project 1-570] Preparing netlist for logic optimization INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers. INFO: [Opt 31-141] Inserted 4 OBUFs to IO ports without IO buffers. 
+// Tcl Message:  Processing XDC Constraints Initializing timing engine Parsing XDC File [/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/constrs_1/imports/new/topmetal-fpga-constraints.xdc] 
+// Tcl Message: Finished Parsing XDC File [/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/constrs_1/imports/new/topmetal-fpga-constraints.xdc] Completed Processing XDC Constraints  
+// Tcl Message: INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers. INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 9026.895 ; gain = 0.000 ; free physical = 152 ; free virtual = 11614 
+// Tcl Message: INFO: [Common 17-83] Releasing license: Synthesis 
+// Tcl Message: 23 Infos, 22 Warnings, 3 Critical Warnings and 0 Errors encountered. synth_design completed successfully 
+// Tcl Message: synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 9026.895 ; gain = 632.141 ; free physical = 148 ; free virtual = 11611 
+// Tcl Message: INFO: [Common 17-2834] synth_design peak Physical Memory [PSS]  INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS]  
+// Elapsed Time for: 'a.a': 38s
+// 'a' command handler elapsed time: 38 seconds
+// [Engine Memory]: 3,004 MB (+366116kb) [00:06:08]
+// Elapsed time: 38 seconds
+dismissDialog("Run Linter"); // bq
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, RTL Analysis, Open Elaborated Design, Schematic]", 16, false); // f
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: ELABORATE_START
+dismissDialog("Elaborate Design"); // u
+// Tcl Message: synth_design -rtl -rtl_skip_mlo -name rtl_1 
+// Tcl Message: Command: synth_design -rtl -rtl_skip_mlo -name rtl_1 Starting synth_design Using part: xc7a35tcpg236-1 Top: tmSe_leader 
+// TclEventType: ELABORATE_FINISH
