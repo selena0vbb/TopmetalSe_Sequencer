@@ -38,18 +38,18 @@ set_property PACKAGE_PIN V16 [get_ports CONFIGURE_LED]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {trigger_thresh_s
 
 # control the small array through switches on the board 
-set_property PACKAGE_PIN T2 [get_ports {SA_COL[2]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL[2]}]
-set_property PACKAGE_PIN R3 [get_ports {SA_COL[1]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL[1]}]
-set_property PACKAGE_PIN W2 [get_ports {SA_COL[0]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL[0]}]
-set_property PACKAGE_PIN U1 [get_ports {SA_ROW[2]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {SA_ROW[2]}]
-set_property PACKAGE_PIN T1 [get_ports {SA_ROW[1]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {SA_ROW[1]}]
-set_property PACKAGE_PIN R2 [get_ports {SA_ROW[0]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {SA_ROW[0]}]
+set_property PACKAGE_PIN T2 [get_ports {SA_COL_SWITCH[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL_SWITCH[2]}]
+set_property PACKAGE_PIN R3 [get_ports {SA_COL_SWITCH[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL_SWITCH[1]}]
+set_property PACKAGE_PIN W2 [get_ports {SA_COL_SWITCH[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL_SWITCH[0]}]
+set_property PACKAGE_PIN U1 [get_ports {SA_ROW_SWITCH[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {SA_ROW_SWITCH[2]}]
+set_property PACKAGE_PIN T1 [get_ports {SA_ROW_SWITCH[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {SA_ROW_SWITCH[1]}]
+set_property PACKAGE_PIN R2 [get_ports {SA_ROW_SWITCH[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {SA_ROW_SWITCH[0]}]
  
 
 ## leds
@@ -169,7 +169,7 @@ set_property PACKAGE_PIN L17 [get_ports LA_COL_RESET]
 set_property PACKAGE_PIN M18 [get_ports LA_ROW_DAT_IN]					
 	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_DAT_IN]
 #Sch name = JB4
-set_property PACKAGE_PIN L18 [get_ports LA_COL_DAT_IN]					
+set_property PACKAGE_PIN M19 [get_ports LA_COL_DAT_IN]					
 	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_DAT_IN]
 ##Sch name = JB7
 set_property PACKAGE_PIN N17 [get_ports LA_ROW_SHIFT]					
