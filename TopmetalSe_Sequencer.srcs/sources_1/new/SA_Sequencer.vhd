@@ -86,10 +86,10 @@ SA_PIXL_SELECT: process(INTERN_CLK, USE_SWITCH)
                 ELSIF SA_PXL_ADDR = "0010" THEN --pixel 2
                     SA_ROW_OUT <= "001";
                     SA_COL_OUT <= "100";
-                ELSIF SA_PXL_ADDR = "0100" THEN --pixel 1
+                ELSIF SA_PXL_ADDR = "0001" THEN --pixel 1
                     SA_ROW_OUT<= "001";
                     SA_COL_OUT<= "010";
-                ELSIF SA_PXL_ADDR = "0011" THEN --pixel 0
+                ELSIF SA_PXL_ADDR = "0000" THEN --pixel 0
                     SA_ROW_OUT<= "001";
                     SA_COL_OUT<= "001";  
       
