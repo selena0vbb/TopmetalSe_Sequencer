@@ -335,7 +335,7 @@ BEGIN
                     DAC_DAT_VAL <= '1';
                     bridgeState<= SPI_WAIT;
                 WHEN SPI_WAIT =>
-                    DAC_DAT_VAL<= '0';
+                    --DAC_DAT_VAL<= '0';
                     
                     --wait few clock cycles before resetting
                     IF wait_cycle = 0 THEN
