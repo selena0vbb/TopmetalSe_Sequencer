@@ -23,6 +23,8 @@ xxxx0011 - Small Array Pixel Selection via Hardware Switches
 
 xxxx0100 - Large Array Pixel Selection + 16 bits (D15 - D0)
 
+xxxx01100 - Large Array Pixel Scan Off
+
 The DAC SPI writing is primarily described below as well as in the TI DAC 8568 manual, but the important thing is that after the first word is sent (8 bits), 4 more words are required (32 bits), where the 32 bits are described the manual.
 
 The SA Pixel selection via Hardware sets it such that the switches on the Basys 3 board select the pixels.
