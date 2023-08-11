@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="40.729205237 ms"></ZoomEndTime>
-      <Cursor1Time time="10.000000000 ms"></Cursor1Time>
+      <ZoomStartTime time="967,448.750 ns"></ZoomStartTime>
+      <ZoomEndTime time="967,756.251 ns"></ZoomEndTime>
+      <Cursor1Time time="967,500.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="248"></NameColumnWidth>
+      <NameColumnWidth column_width="244"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="28" />
+   <WVObjectSize size="20" />
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -100,38 +100,5 @@
    <wvobject type="array" fp_name="/topMetalSequencer_tb/ROW_SEL">
       <obj_property name="ElementShortName">ROW_SEL[99:0]</obj_property>
       <obj_property name="ObjectShortName">ROW_SEL[99:0]</obj_property>
-   </wvobject>
-   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/STOP_ADDR">
-      <obj_property name="ElementShortName">STOP_ADDR</obj_property>
-      <obj_property name="ObjectShortName">STOP_ADDR</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/UART_RX_VALID">
-      <obj_property name="ElementShortName">UART_RX_VALID</obj_property>
-      <obj_property name="ObjectShortName">UART_RX_VALID</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/INTERN_CLK">
-      <obj_property name="ElementShortName">INTERN_CLK</obj_property>
-      <obj_property name="ObjectShortName">INTERN_CLK</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/LA_UART_REG">
-      <obj_property name="ElementShortName">LA_UART_REG[15:0]</obj_property>
-      <obj_property name="ObjectShortName">LA_UART_REG[15:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SA_PXL_VAL">
-      <obj_property name="ElementShortName">SA_PXL_VAL</obj_property>
-      <obj_property name="ObjectShortName">SA_PXL_VAL</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/SA_USE_SWITCH">
-      <obj_property name="ElementShortName">SA_USE_SWITCH</obj_property>
-      <obj_property name="ObjectShortName">SA_USE_SWITCH</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/SA_ROW_OUT">
-      <obj_property name="ElementShortName">SA_ROW_OUT[2:0]</obj_property>
-      <obj_property name="ObjectShortName">SA_ROW_OUT[2:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/SA_COL_OUT">
-      <obj_property name="ElementShortName">SA_COL_OUT[2:0]</obj_property>
-      <obj_property name="ObjectShortName">SA_COL_OUT[2:0]</obj_property>
    </wvobject>
 </wave_config>

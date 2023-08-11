@@ -147,7 +147,11 @@ BEGIN
                 
                 pxl_addr <= pxl_addr +1;
                 
-                IF (COL_ADDR >= 99) THEN
+                IF (COL_ADDR = 98) THEN
+                    --COL_DAT_IN<= '1';
+                    COL_ADDR <= COL_ADDR + 1;
+                
+                ELSIF (COL_ADDR >= 99) THEN
                     
                     
                     COL_ADDR <= "00000000";
@@ -169,15 +173,17 @@ BEGIN
             WHEN ROW_SHIFT =>
                 LA_ROW_SHIFT_BUF<= '0';
                 COL_DAT_IN<='0';
+                COL_ADDR <= COL_ADDR + 1;
+                pxl_addr <= pxl_addr+1;
                 IF (ROW_ADDR >= 99) THEN
                     ROW_ADDR<="00000000";
                     
                     driveState<=COL_SHIFT;
                     pxl_addr <= 0;
                 ELSE
-
                     ROW_ADDR <= ROW_ADDR + 1;
                     driveState<=COL_SHIFT;
+                    
  
                 END IF;
 
