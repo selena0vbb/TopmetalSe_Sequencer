@@ -113,7 +113,7 @@ architecture Behavioral of tmSe_leader is
     
     SIGNAL SA_USE_SWITCH : std_logic := '1';
     
-    SIGNAL SCLK_ON      : std_logic := '0';
+    SIGNAL SCLK_ON      : std_logic := '1';
     
     SIGNAL LED_BUF    : std_logic_vector(31 downto 0);
     
@@ -263,7 +263,7 @@ BEGIN
                     
                         IF UART_REG(3 downto 0) = "0000" THEN --DAC PROGRAM
                            bridgeState<=DAC_PROGRAM;
-                           SCLK_ON <= '0';
+                           SCLK_ON <= '1';
 
                         ELSIF UART_REG(3 downto 0) = "0011" THEN -- USE HARDWARE SWITCHES
                               -- set hardware siwtch to 1
@@ -331,11 +331,11 @@ BEGIN
                     --DAC_DAT_VAL <=  '1';
                     bridgeState<= STOP;
                 WHEN STOP =>
-                    SCLK_ON <= '1';
+                    --SCLK_ON <= '1';
                     DAC_DAT_VAL <= '1';
                     bridgeState<= SPI_WAIT;
                 WHEN SPI_WAIT =>
-                    --DAC_DAT_VAL<= '0';
+                    DAC_DAT_VAL<= '0';
                     
                     --wait few clock cycles before resetting
                     IF wait_cycle = 0 THEN
@@ -345,7 +345,7 @@ BEGIN
                         
                     END IF;
                 WHEN S_RESET =>
-                    SCLK_ON<= '0';
+                    --SCLK_ON<= '0';
                     wait_cycle <= 8000;
                     bridgeState <= IDLE;
                     DAC_DAT_REG <= (others => '0');

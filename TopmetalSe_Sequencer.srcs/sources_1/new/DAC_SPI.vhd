@@ -94,7 +94,7 @@ BEGIN
                     END IF;
                 WHEN RX_WAIT =>
                 --Just a Buffer
-                    IF txstate = WX_OUT THEN
+                    IF txstate = WX_END THEN
                         rxstate <= IDLE;    
                     END IF;
             END CASE;
@@ -150,7 +150,7 @@ BEGIN
             
             CLK_COUNT <= CLK_COUNT +1;
             IF CLK_COUNT = 3 THEN
-                IF SCLK_ON = '1' THEN    
+                IF REG_VAL = '1' or txstate = WX_END THEN    
                     SCLK_BUF <= NOT SCLK_BUF;
                 END IF;
                 CLK_COUNT<=0;
