@@ -124,6 +124,14 @@ architecture Behavioral of tmSe_leader is
    
     SIGNAL FRAME_START_BUF: std_logic := '0';
     --DEVICES
+    COMPONENT ila_0
+        PORT(
+            CLK: IN std_logic;
+            PROBE0: IN std_logic_vector(15 downto 0)
+            
+        );
+    END COMPONENT;
+    
     COMPONENT clock_sequencer
        PORT(
         CLK     : IN std_logic;
@@ -188,7 +196,13 @@ BEGIN
     LA_ROW_DAT_IN <= LA_ROW_DAT_BUF;
     LA_COL_DAT_IN <= LA_COL_DAT_BUF;
 	FRAME_START <= FRAME_START_BUF;
-
+	
+    ila: ila_0 PORT MAP(
+        CLK => INTERN_CLK,
+        PROBE0 => LA_UART_REG
+    
+    );
+   
    -- Instantiate the sequencer
     CLK_SEQ: clock_sequencer PORT MAP (
     CLK           => EXTERN_CLK,
