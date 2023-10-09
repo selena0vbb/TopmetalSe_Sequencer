@@ -53,8 +53,9 @@ entity clock_sequencer is
     COL_CLK         : OUT std_logic;
     
     ROW_RESET       : OUT std_logic;
-    COL_RESET       : OUT std_logic
-    
+    COL_RESET       : OUT std_logic;
+   
+   	FRAME_START     : OUT std_logic
     );
     
 
@@ -137,6 +138,7 @@ BEGIN
                     SPEAK <= '0';
                 END IF;
             WHEN COL_SHIFT =>
+				FRAME_START <= '0';
                 --ROW_DAT_IN <= '0';
                 IF pxl_addr = stop_addr then
                     LA_ROW_SHIFT_BUF <= '0';
@@ -180,6 +182,7 @@ BEGIN
                     
                     driveState<=COL_SHIFT;
                     pxl_addr <= 0;
+					FRAME_START <= '1';
                 ELSE
                     ROW_ADDR <= ROW_ADDR + 1;
                     driveState<=COL_SHIFT;

@@ -234,8 +234,8 @@ set_property PACKAGE_PIN B16 [get_ports xclk]
 #set_property PACKAGE_PIN M2 [get_ports {vauxp7}]				
 #	set_property IOSTANDARD LVCMOS33 [get_ports {vauxp7}]
 ##Sch name = XA4_P
-#set_property PACKAGE_PIN N2 [get_ports {vauxp15}]				
-#	set_property IOSTANDARD LVCMOS33 [get_ports {vauxp15}]
+set_property PACKAGE_PIN N2 [get_ports {FRAME_START}]				
+	set_property IOSTANDARD LVCMOS33 [get_ports {FRAME_START}]
 ##Sch name = XA1_N
 #set_property PACKAGE_PIN K3 [get_ports {vauxn6}]				
 #	set_property IOSTANDARD LVCMOS33 [get_ports {vauxn6}]

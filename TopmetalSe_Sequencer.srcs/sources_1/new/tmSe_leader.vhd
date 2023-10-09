@@ -64,8 +64,9 @@ entity tmSe_leader is
     SPI_SYNC        : OUT std_logic; --PMOD
     SPI_SCLK        : OUT std_logic;  --PMOD
     
-    led             : OUT std_logic_vector(15 downto 0)
-    --CLK_OUT         : OUT std_logic
+    led             : OUT std_logic_vector(15 downto 0);
+    FRAME_START     : OUT std_logic --PMOD
+	--CLK_OUT         : OUT std_logic
      );
 
 END tmSe_leader;
@@ -120,7 +121,8 @@ architecture Behavioral of tmSe_leader is
     SIGNAL LA_UART_REG : std_logic_vector (15 downto 0);
     SIGNAL LA_PXL_STOP_ADDR : integer := 12000;
     SIGNAL LARGE_ARRAY_ENABLE : std_logic := '1';
-    
+   
+    SIGNAL FRAME_START_BUF: std_logic := '0';
     --DEVICES
     COMPONENT clock_sequencer
        PORT(
@@ -136,7 +138,8 @@ architecture Behavioral of tmSe_leader is
         ROW_CLK         : OUT std_logic;
         COL_CLK         : OUT std_logic;
         ROW_RESET       : OUT std_logic;
-        COL_RESET       : OUT std_logic
+        COL_RESET       : OUT std_logic;
+		FRAME_START     : OUT std_logic
     );
     END COMPONENT;
     
@@ -184,8 +187,8 @@ BEGIN
     LA_COL_SHIFT <= LA_COL_SHIFT_BUF;
     LA_ROW_DAT_IN <= LA_ROW_DAT_BUF;
     LA_COL_DAT_IN <= LA_COL_DAT_BUF;
+	FRAME_START <= FRAME_START_BUF;
 
-    
    -- Instantiate the sequencer
     CLK_SEQ: clock_sequencer PORT MAP (
     CLK           => EXTERN_CLK,
@@ -199,7 +202,8 @@ BEGIN
     ROW_RESET     => LA_ROW_RESET,
     COL_RESET     => LA_COL_RESET,
     ROW_CLK       => LA_ROW_CLK,
-    COL_CLK       => LA_COL_CLK
+    COL_CLK       => LA_COL_CLK,
+	FRAME_START   => FRAME_START_BUF
     );
     
     SA_Seq: SA_Sequencer PORT MAP(
