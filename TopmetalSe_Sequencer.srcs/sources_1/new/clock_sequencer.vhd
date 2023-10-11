@@ -138,21 +138,14 @@ BEGIN
                     SPEAK <= '0';
                 END IF;
             WHEN COL_SHIFT =>
+                pxl_addr <= pxl_addr +1;
 				FRAME_START <= '0';
                 --ROW_DAT_IN <= '0';
                 IF pxl_addr = stop_addr then
                     LA_ROW_SHIFT_BUF <= '0';
                     LA_COL_SHIFT_BUF <= '0';
                     SPEAK <= '0';
-                END IF;
-                
-                
-                pxl_addr <= pxl_addr +1;
-                
-                IF (COL_ADDR = 98) THEN
-                    --COL_DAT_IN<= '1';
-                    COL_ADDR <= COL_ADDR + 1;
-                
+                    
                 ELSIF (COL_ADDR >= 99) THEN
                     
                     
@@ -165,6 +158,7 @@ BEGIN
                     ELSE
                         ROW_DAT_IN<='0';                    
                     END IF;
+                    
                     driveState<=ROW_SHIFT;
                     
                 ELSE
@@ -173,6 +167,7 @@ BEGIN
                                        
                 END IF;
             WHEN ROW_SHIFT =>
+            IF SPEAK = '1' THEN
                 LA_ROW_SHIFT_BUF<= '0';
                 COL_DAT_IN<='0';
                 COL_ADDR <= COL_ADDR + 1;
@@ -189,6 +184,7 @@ BEGIN
                     
  
                 END IF;
+            END IF;
 
             END CASE;
             
