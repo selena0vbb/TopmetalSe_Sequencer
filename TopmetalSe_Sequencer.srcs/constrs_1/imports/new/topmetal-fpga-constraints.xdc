@@ -207,8 +207,8 @@ set_property PACKAGE_PIN B15 [get_ports {SA_ROW_OUT[2]}]
 set_property PACKAGE_PIN C15 [get_ports {SA_COL_OUT[2]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL_OUT[2]}]
 	
-set_property PACKAGE_PIN B16 [get_ports xclk]					
-	set_property IOSTANDARD LVCMOS33 [get_ports xclk]
+#set_property PACKAGE_PIN B16 [get_ports xclk]					
+#	set_property IOSTANDARD LVCMOS33 [get_ports xclk]
 	
 
 	
