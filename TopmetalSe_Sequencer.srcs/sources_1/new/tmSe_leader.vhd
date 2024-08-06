@@ -203,13 +203,13 @@ BEGIN
 	FRAME_START <= FRAME_START_BUF;
 	
     ila: ila_0 PORT MAP(
-        CLK => INTERN_CLK,
+        CLK => INTERN_CLK,      
         PROBE0 => LA_UART_REG,
         PROBE1 => UART_REG,
         PROBE2 => DAC_DAT_REG,
-        PROBE3 => UART_RX_VALID,
-        PROBE4 => LA_ROW_SHIFT_BUF,
-        PROBE5 => LA_COL_SHIFT_BUF
+        PROBE3 => LA_ROW_DAT_BUF,
+        PROBE4 => LA_COL_DAT_BUF,
+        PROBE5 => LA_ROW_SHIFT_BUF
     
     );
    

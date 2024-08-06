@@ -1,0 +1,94 @@
+/*
+
+Xilinx Vivado v2019.2 (64-bit) [Major: 2019, Minor: 2]
+SW Build: 2708876 on Wed Nov  6 21:39:14 MST 2019
+IP Build: 2700528 on Thu Nov  7 00:09:20 MST 2019
+
+Process ID (PID): 3398444
+License: Customer
+
+Current time: 	Mon Aug 05 17:24:26 PDT 2024
+Time zone: 	Pacific Standard Time (America/Los_Angeles)
+
+OS: Fedora release 31 (Thirty One)
+OS Version: 5.8.12-100.fc31.x86_64
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: localhost:10.0
+Screen size: 1920x1056
+Screen resolution (DPI): 100
+Available screens: 2
+Available disk space: 14 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	9.0.4 64-bit
+Java home: 	/opt/Xilinx/Vivado/2019.2/tps/lnx64/jre9.0.4
+Java executable location: 	/opt/Xilinx/Vivado/2019.2/tps/lnx64/jre9.0.4/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	selena
+User home directory: /home/selena
+User working directory: /home/selena/TopmetalSe_Sequencer
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /opt/Xilinx/Vivado
+HDI_APPROOT: /opt/Xilinx/Vivado/2019.2
+RDI_DATADIR: /opt/Xilinx/Vivado/2019.2/data
+RDI_BINDIR: /opt/Xilinx/Vivado/2019.2/bin
+
+Vivado preferences file location: /home/selena/.Xilinx/Vivado/2019.2/vivado.xml
+Vivado preferences directory: /home/selena/.Xilinx/Vivado/2019.2/
+Vivado layouts directory: /home/selena/.Xilinx/Vivado/2019.2/layouts
+PlanAhead jar file location: 	/opt/Xilinx/Vivado/2019.2/lib/classes/planAhead.jar
+Vivado log file location: 	/home/selena/TopmetalSe_Sequencer/vivado.log
+Vivado journal file location: 	/home/selena/TopmetalSe_Sequencer/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-3398444-phys-villain.washington.edu
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /opt/Xilinx/Vivado/2019.2/ids_lite/ISE
+XILINX_DSP: /opt/Xilinx/Vivado/2019.2/ids_lite/ISE
+XILINX_PLANAHEAD: /opt/Xilinx/Vivado/2019.2
+XILINX_VITIS: 
+XILINX_VIVADO: /opt/Xilinx/Vivado/2019.2
+XILINX_VIVADO_HLS: /opt/Xilinx/Vivado/2019.2
+
+
+GUI allocated memory:	196 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 885 MB
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+selectButton(PAResourceEtoH.GettingStartedView_OPEN_PROJECT, "Open Project"); // y (x, cr)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_PROJECT
+// HMemoryUtils.trashcanNow. Engine heap size: 892 MB. GUI used memory: 105 MB. Current time: 8/5/24, 5:24:28 PM PDT
+setFileChooser("/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.xpr");
+// HOptionPane Warning: 'This project was created with a future version of Vivado. It will be opened in read-only mode for the protection of unrecognized data. Please use 'File | Save Project As...' if you need to alter a copy of this project. The project may or may not open reliably with this version of Vivado. OK to proceed and open the project? (Future Project Version)'
+// Opening Vivado Project: /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.xpr. Version: Vivado v2023.1 
+// bB (cr):  Open Project : addNotify
+selectButton("OptionPane.button", "OK"); // JButton (A, G)
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project /home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: PROJECT_CLOSE
+// CommandFailedException: ERROR: [Common 17-69] Command failed: ERROR: [Runs 36-378] The checkpoint '/home/selena/TopmetalSe_Sequencer/TopmetalSe_Sequencer.srcs/utils_1/imports/synth_1/tmSe_leader.dcp' was created with 'Vivado v2023.1 (64-bit)', and cannot be opened in this version.  
+// 'i' command handler elapsed time: 11 seconds
+// [GUI Memory]: 96 MB (+97664kb) [00:00:17]
+// [Engine Memory]: 940 MB (+834300kb) [00:00:17]
+dismissDialog("Open Project"); // bB (cr)
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.

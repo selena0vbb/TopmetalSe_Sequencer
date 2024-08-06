@@ -161,27 +161,27 @@ set_property PACKAGE_PIN H1 [get_ports SPI_SCLK]
 #Pmod Header JB
 #Sch name = JB1ada
 set_property PACKAGE_PIN K17 [get_ports LA_COL_RESET]					
-	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_RESET]
+	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_RESET]
 ##Sch name = JB2
 set_property PACKAGE_PIN L17 [get_ports LA_ROW_RESET]					
-	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_RESET]
+	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_RESET]
 ##Sch name = JB3
 set_property PACKAGE_PIN M18 [get_ports LA_COL_DAT_IN]					
-	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_DAT_IN]
+	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_DAT_IN]
 #Sch name = JB4
 set_property PACKAGE_PIN M19 [get_ports LA_ROW_DAT_IN]					
-	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_DAT_IN]
+	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_DAT_IN]
 ##Sch name = JB7
 set_property PACKAGE_PIN N17 [get_ports LA_COL_SHIFT]					
-	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_SHIFT]
+	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_SHIFT]
 ##Sch name = JB8
 set_property PACKAGE_PIN P17 [get_ports LA_ROW_SHIFT]					
-	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_SHIFT]
+	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_SHIFT]
 ##Sch name = JB9
-set_property PACKAGE_PIN P18 [get_ports LA_ROW_CLK]					
+set_property PACKAGE_PIN P18 [get_ports LA_COL_CLK]					
 	set_property IOSTANDARD LVCMOS33 [get_ports LA_ROW_CLK]
 ##Sch name = JB10 
-set_property PACKAGE_PIN R18 [get_ports LA_COL_CLK]					
+set_property PACKAGE_PIN R18 [get_ports LA_ROW_CLK]					
 	set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_CLK]
  
 
