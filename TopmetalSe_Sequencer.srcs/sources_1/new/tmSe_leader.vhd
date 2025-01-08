@@ -1,9 +1,9 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: University of Washington CENPA
+-- Engineer: Harry Ni
 -- 
 -- Create Date: 03/28/2023 04:07:36 PM
--- Design Name: 
+-- Design Name: TopmetalSe Sequencer
 -- Module Name: tmSe_leader - Behavioral
 -- Project Name: 
 -- Target Devices: 
@@ -33,7 +33,7 @@ entity tmSe_leader is
     INTERN_CLK     : IN std_logic; --Internal 100 MHz Clock
    
     EXTERN_CLK     : IN std_logic; --External 1-25 MHz Clock 
-    
+    ADC_VAL : IN std_logic_vector(7 downto 0);
     --Switches
     RESET          : IN std_logic;
     CONFIGURE_LED   :IN std_logic;
@@ -65,7 +65,8 @@ entity tmSe_leader is
     SPI_SCLK        : OUT std_logic;  --PMOD
     
     led             : OUT std_logic_vector(15 downto 0);
-    FRAME_START     : OUT std_logic --PMOD
+    FRAME_START     : OUT std_logic; --PMOD;
+    TRIG_OUT        : OUT std_logic --PMOD
 	--CLK_OUT         : OUT std_logic
      );
 
@@ -123,6 +124,10 @@ architecture Behavioral of tmSe_leader is
     SIGNAL LARGE_ARRAY_ENABLE : std_logic := '1';
    
     SIGNAL FRAME_START_BUF: std_logic := '0';
+    
+    SIGNAL THRESH_VAL : signed(7 downto 0);
+    SIGNAL THRESH_SET: std_logic;
+    
     --DEVICES
     COMPONENT ila_0
         PORT(
@@ -143,6 +148,10 @@ architecture Behavioral of tmSe_leader is
         RESET   : IN std_logic;
         ENABLE  : IN std_logic;
         STOP_ADDR : IN integer;
+        ADC_IN : IN unsigned(7 downto 0);
+        THRESH_SET : IN std_logic;
+        THRESH_VAL : IN signed(7 downto 0);
+        
         --OUTPUTS
         LA_ROW_SHIFT    : OUT std_logic;
         LA_COL_SHIFT    : OUT std_logic;
@@ -152,7 +161,8 @@ architecture Behavioral of tmSe_leader is
         COL_CLK         : OUT std_logic;
         ROW_RESET       : OUT std_logic;
         COL_RESET       : OUT std_logic;
-		FRAME_START     : OUT std_logic
+		FRAME_START     : OUT std_logic;
+		TRIGGER_OUT     : OUT std_logic
     );
     END COMPONENT;
     
@@ -219,6 +229,9 @@ BEGIN
     RESET         => RESET,
     ENABLE        => LARGE_ARRAY_ENABLE,
     STOP_ADDR     => LA_PXL_STOP_ADDR,
+    ADC_IN        => unsigned(ADC_VAL),
+    THRESH_VAL    => THRESH_VAL,
+    THRESH_SET    => THRESH_SET,
     LA_ROW_SHIFT  => LA_ROW_SHIFT_BUF,
     LA_COL_SHIFT  => LA_COL_SHIFT_BUF,
     ROW_DAT_IN    => LA_ROW_DAT_BUF,
@@ -227,7 +240,9 @@ BEGIN
     COL_RESET     => LA_COL_RESET,
     ROW_CLK       => LA_ROW_CLK,
     COL_CLK       => LA_COL_CLK,
-	FRAME_START   => FRAME_START_BUF
+	FRAME_START   => FRAME_START_BUF,
+	TRIGGER_OUT   => TRIG_OUT
+	
     );
     
     SA_Seq: SA_Sequencer PORT MAP(
@@ -265,7 +280,7 @@ BEGIN
     SCLK => SPI_SCLK
     );  
     
-    
+   
     UART_SPI_DAC: process(INTERN_CLK, UART_RX_VALID, RESET)
     
     BEGIN
@@ -307,7 +322,10 @@ BEGIN
 
                         ELSIF UART_REG(3 downto 0) = "1100" THEN --TURN ON CLOCKING
                             LARGE_ARRAY_ENABLE <= '0';
-
+                        ELSIF UART_REG(3 downto 0) = "1001" THEN --program threshold
+                            -- first four bits again
+                            UART_REG(7 downto 4)
+                        
                         END IF;
                     
                     END IF;

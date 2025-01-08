@@ -41,6 +41,10 @@ entity clock_sequencer is
     
     STOP_ADDR : IN integer; --used to signal a stop at a certain address, set it higher than 10,000 to disable
    
+    ADC_IN  : IN unsigned(7 DOWNTO 0) := (others=>'0');
+    
+    THRESH_SET: IN std_logic;
+    THRESH_VAL : IN signed(7 downto 0);
     
     --OUTPUTS
     LA_ROW_SHIFT    : OUT std_logic;
@@ -55,6 +59,7 @@ entity clock_sequencer is
     ROW_RESET       : OUT std_logic;
     COL_RESET       : OUT std_logic;
    
+    TRIGGER_OUT     : OUT std_logic;
    	FRAME_START     : OUT std_logic
     );
     
@@ -77,6 +82,30 @@ architecture Behavioral of clock_sequencer is
     SIGNAL pxl_addr : integer := 0; 
     
     SIGNAL SPEAK : std_logic := '1';
+    
+    SIGNAL adc_in_buf: unsigned(7 downto 0);
+    SIGNAL adc_in_buf_2: unsigned(7 downto 0);
+    SIGNAL adc_val_prev_frame : unsigned(7 downto 0);
+    SIGNAL bram_out: std_logic_vector(7 downto 0);
+    SIGNAL diff : signed(7 downto 0);
+    SIGNAL pxl_addr_next: integer :=1;
+    SIGNAL trigger_threshold: signed(7 downto 0) := to_signed(3,8);
+    
+    SIGNAL pxl_addr_stdvec: std_logic_vector(13 downto 0);
+    SIGNAL pxl_addr_next_stdvec: std_logic_vector(13 downto 0);
+
+    COMPONENT adc_frame_mem is
+    PORT(
+        clka : IN STD_LOGIC;
+        wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        addra : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        clkb : IN STD_LOGIC;
+        addrb : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
+        doutb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0) 
+   
+    );
+    END COMPONENT;
 BEGIN
    TM_CLK_BUF <= CLK;
    LA_ROW_SHIFT <= LA_ROW_SHIFT_BUF;
@@ -88,6 +117,20 @@ BEGIN
    ROW_CLK <= CLK;
    COL_CLK <= CLK;
    
+   pxl_addr_stdvec <= std_logic_vector(to_unsigned(pxl_addr,14));
+   pxl_addr_next_stdvec <= std_logic_vector(to_unsigned(pxl_addr_next,14));
+   
+   adc_in_buf <= adc_in;
+   adc_frame_mem_inst: adc_frame_mem
+   port map(
+    clka => CLK,
+    wea => "1",
+    addra=> pxl_addr_stdvec,
+    dina => std_logic_vector(adc_in_buf),
+    clkb => CLK,
+    addrb => pxl_addr_next_stdvec,
+    doutb => bram_out
+   );
    
    LA_clock: PROCESS(CLK, RESET, ENABLE)
    BEGIN
@@ -96,6 +139,7 @@ BEGIN
             LA_ROW_SHIFT_BUF <= '0';
             LA_COL_SHIFT_BUF <= '0';
             pxl_addr <= 0;
+            pxl_addr_next <=1;
             SPEAK <= '1';
         ELSIF FALLING_EDGE(CLK) THEN
             IF SPEAK = '1' THEN 
@@ -132,6 +176,7 @@ BEGIN
                 IF pxl_addr /= stop_addr then 
                     driveState <= COL_SHIFT;
                     pxl_addr <= pxl_addr +1;
+                    pxl_addr_next <= pxl_addr_next+1;
                 ELSE
                     LA_ROW_SHIFT_BUF <= '0';
                     LA_COL_SHIFT_BUF <= '0';
@@ -139,13 +184,21 @@ BEGIN
                 END IF;
             WHEN COL_SHIFT =>
                 pxl_addr <= pxl_addr +1;
+                pxl_addr_next <= pxl_addr_next +1;
 				FRAME_START <= '0';
                 --ROW_DAT_IN <= '0';
+                
+                IF pxl_addr_next >= 9999 then
+                    pxl_addr_next <= 0;
+                END IF;
+                IF pxl_addr >= 9999 then
+                    pxl_addr <= 0;
+                END IF;
                 IF pxl_addr = stop_addr then
                     LA_ROW_SHIFT_BUF <= '0';
                     LA_COL_SHIFT_BUF <= '0';
                     SPEAK <= '0';
-                    
+               
                 ELSIF (COL_ADDR >= 99) THEN
                     
                     
@@ -172,11 +225,12 @@ BEGIN
                 COL_DAT_IN<='0';
                 COL_ADDR <= COL_ADDR + 1;
                 pxl_addr <= pxl_addr+1;
+                pxl_addr_next <= pxl_addr_next +1;
                 IF (ROW_ADDR >= 99) THEN
                     ROW_ADDR<="00000000";
                     
                     driveState<=COL_SHIFT;
-                    pxl_addr <= 0;
+                   
 					FRAME_START <= '1';
                 ELSE
                     ROW_ADDR <= ROW_ADDR + 1;
@@ -193,6 +247,35 @@ BEGIN
    
    END process;
    
+   
+   TRIGGER: PROCESS(CLK, PXL_ADDR, RESET)
+   BEGIN
+    IF RESET = '1' THEN
+        TRIGGER_OUT <= '0';
+    ELSIF FALLING_EDGE(CLK) THEN
+        adc_in_buf_2 <= adc_in_buf;
+        adc_val_prev_frame <= unsigned(bram_out);
+        
+        --compare
+        diff <= signed(adc_in_buf_2 - adc_val_prev_frame);
+        IF diff > trigger_threshold THEN
+            trigger_out <= '1'; -- trigger out comes 2 clock cycles later
+        END IF;
+        
+    END IF;
+     
+   END PROCESS;
+   
+   SET_TRIGGER: PROCESS(CLK, THRESH_SET, RESET)
+   BEGIN
+    IF RESET = '1' THEN
+        trigger_threshold <= "00000000";
+    ELSIF FALLING_EDGE(CLK) THEN
+        IF THRESH_SET = '1' THEN
+            trigger_threshold<=THRESH_VAL;
+        END IF;
+    END IF;
+   END PROCESS;
    --Below is used for clocking the small array
    --For now, let's just use the switches on the FPGA 
 --   SA_clock: PROCESS(CLK, RESET)

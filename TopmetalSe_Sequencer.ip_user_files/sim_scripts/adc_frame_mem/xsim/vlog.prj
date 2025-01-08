@@ -1,0 +1,7 @@
+verilog xil_defaultlib  \
+"../../../../TopmetalSe_Sequencer.gen/sources_1/ip/adc_frame_mem/sim/adc_frame_mem.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
