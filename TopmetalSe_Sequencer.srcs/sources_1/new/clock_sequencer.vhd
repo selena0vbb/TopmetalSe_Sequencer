@@ -94,6 +94,7 @@ architecture Behavioral of clock_sequencer is
     SIGNAL pxl_addr_stdvec: std_logic_vector(13 downto 0);
     SIGNAL pxl_addr_next_stdvec: std_logic_vector(13 downto 0);
 
+    SIGNAL TRIGGER_BUF: std_logic;
     COMPONENT adc_frame_mem is
     PORT(
         clka : IN STD_LOGIC;
@@ -121,6 +122,9 @@ BEGIN
    pxl_addr_next_stdvec <= std_logic_vector(to_unsigned(pxl_addr_next,14));
    
    adc_in_buf <= adc_in;
+   
+   TRIGGER_OUT <= TRIGGER_BUF;
+   
    adc_frame_mem_inst: adc_frame_mem
    port map(
     clka => CLK,
@@ -251,15 +255,18 @@ BEGIN
    TRIGGER: PROCESS(CLK, PXL_ADDR, RESET)
    BEGIN
     IF RESET = '1' THEN
-        TRIGGER_OUT <= '0';
+        TRIGGER_BUF <= '0';
     ELSIF FALLING_EDGE(CLK) THEN
+        IF trigger_buf = '1' THEN
+            trigger_buf <= '0';
+        END IF;
         adc_in_buf_2 <= adc_in_buf;
         adc_val_prev_frame <= unsigned(bram_out);
         
         --compare
         diff <= signed(adc_in_buf_2 - adc_val_prev_frame);
         IF diff > trigger_threshold THEN
-            trigger_out <= '1'; -- trigger out comes 2 clock cycles later
+            trigger_buf <= '1'; -- trigger out comes 2 clock cycles later
         END IF;
         
     END IF;
@@ -269,7 +276,7 @@ BEGIN
    SET_TRIGGER: PROCESS(CLK, THRESH_SET, RESET)
    BEGIN
     IF RESET = '1' THEN
-        trigger_threshold <= "00000000";
+        trigger_threshold <= "00000011";
     ELSIF FALLING_EDGE(CLK) THEN
         IF THRESH_SET = '1' THEN
             trigger_threshold<=THRESH_VAL;

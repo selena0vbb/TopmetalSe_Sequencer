@@ -51,7 +51,7 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
     SA_COL_SWITCH          : IN STD_LOGIC_VECTOR( 2 downto 0);
     SA_ROW_SWITCH          : IN STD_LOGIC_VECTOR( 2 downto 0);
     
-    
+    ADC_VAL          : IN std_logic_vector(7 downto 0);
     --OUTPUTS
     --Below clocks shift registers of large array
     LA_ROW_SHIFT    : OUT std_logic;
@@ -65,15 +65,15 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
     LA_COL_CLK      : OUT std_logic;
     
     --Below controls small array(clocking and single pixel selection)
-    SA_ROW_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
-    SA_COL_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+    --SA_ROW_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+    --SA_COL_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
     
     SPI_OUT         : OUT std_logic; --PMOD
     SPI_SYNC        : OUT std_logic; --PMOD
     SPI_SCLK        : OUT std_logic;  --PMOD
     
-    led             : OUT std_logic_vector(15 downto 0)
-    --CLK_OUT         : OUT std_logic
+    led             : OUT std_logic_vector(15 downto 0);
+    TRIG_OUT         : OUT std_logic
   
   ); 
   END COMPONENT;
@@ -161,6 +161,10 @@ ARCHITECTURE behavior OF topMetalSequencer_tb IS
     SIGNAL SR_CLK_BUF: std_logic;
     
     SIGNAL CONFIG_LED : std_logic :='0';
+    
+    SIGNAL TRIGGER: std_logic :='0';
+    
+    SIGNAL ADC_VAL : std_logic_vector(7 downto 0);
 
   constant c_CLK_PERIOD : time := 10ns;
   constant C_BIT_PERIOD: time := 104167 ns;
@@ -212,7 +216,7 @@ BEGIN
     
     EXTERN_CLK => EXTERN_CLK,    
     RESET => RESET, 
-    
+    ADC_VAL => ADC_VAL,
     USB_SERIAL  => USB_SERIAL,
     SA_COL_SWITCH => SA_COL_IN,
     SA_ROW_SWITCH => SA_ROW_IN,
@@ -234,9 +238,9 @@ BEGIN
     SPI_SYNC => SYNC,
     SPI_SCLK =>SCLK,
     
-    SA_COL_OUT => SA_COL_OUT,
-    SA_ROW_OUT=>SA_ROW_OUT,
-    
+    --SA_COL_OUT => SA_COL_OUT,
+    --SA_ROW_OUT=>SA_ROW_OUT,
+    TRIG_OUT => TRIGGER,    
     led=>open
   );
   
@@ -294,21 +298,21 @@ BEGIN
     WAIT FOR EXTERN_CLK_PERIOD;
     --UART_WRITE_BYTE("00010100", USB_SERIAL);
     --WAIT FOR 2ms;
-    UART_WRITE_BYTE("00100100", USB_SERIAL);
+    --UART_WRITE_BYTE("00100100", USB_SERIAL);
 
     WAIT FOR 2ms;
 
-    UART_WRITE_BYTE("11000111", USB_SERIAL);
+    --UART_WRITE_BYTE("11000111", USB_SERIAL);
     
     WAIT FOR 2ms;
     --RESET<='1';
-    UART_WRITE_BYTE("00000000", USB_SERIAL);
+    --UART_WRITE_BYTE("00000000", USB_SERIAL);
     WAIT FOR 1ms;
 --    --RESET<='0';
 --    UART_WRITE_BYTE("11101101", USB_SERIAL);
     
 --    WAIT FOR 1ms;
---    UART_WRITE_BYTE("11000000", USB_SERIAL);
+    UART_WRITE_BYTE("11111001", USB_SERIAL);
 --    WAIT FOR 1ms;
 --    UART_WRITE_BYTE("11001101", USB_SERIAL);
 --    WAIT FOR 1ms;

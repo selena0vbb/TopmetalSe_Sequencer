@@ -57,8 +57,8 @@ entity tmSe_leader is
     LA_COL_CLK      : OUT std_logic;
     
     --Below controls small array(clocking and single pixel selection)
-    SA_ROW_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
-    SA_COL_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+    --SA_ROW_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
+    --SA_COL_OUT          : OUT STD_LOGIC_VECTOR( 2 downto 0); --PMOD
     
     SPI_OUT         : OUT std_logic; --PMOD
     SPI_SYNC        : OUT std_logic; --PMOD
@@ -166,21 +166,21 @@ architecture Behavioral of tmSe_leader is
     );
     END COMPONENT;
     
-    COMPONENT SA_Sequencer
-        PORT(  
-          INTERN_CLK : IN std_logic;
-          RESET      : IN std_logic;
-          USE_SWITCH : IN std_logic;
-          SA_PXL_ADDR: IN std_logic_vector(3 downto 0);
+--    COMPONENT SA_Sequencer
+--        PORT(  
+--          INTERN_CLK : IN std_logic;
+--          RESET      : IN std_logic;
+--          USE_SWITCH : IN std_logic;
+--          SA_PXL_ADDR: IN std_logic_vector(3 downto 0);
           
-          ROW_SWITCH : IN std_logic_vector(2 downto 0);
-          COL_SWITCH : IN std_logic_vector(2 downto 0);
+--          ROW_SWITCH : IN std_logic_vector(2 downto 0);
+--          COL_SWITCH : IN std_logic_vector(2 downto 0);
           
-          SA_ROW_OUT : OUT std_logic_vector(2 downto 0);
-          SA_COL_OUT : OUT std_logic_vector(2 downto 0)
+--          SA_ROW_OUT : OUT std_logic_vector(2 downto 0);
+--          SA_COL_OUT : OUT std_logic_vector(2 downto 0)
 
-        );
-    END COMPONENT;
+--        );
+--    END COMPONENT;
     COMPONENT uart_rx --8 bit UART receiver
         PORT(
 		i_CLK       : in std_logic; --in clock
@@ -245,18 +245,18 @@ BEGIN
 	
     );
     
-    SA_Seq: SA_Sequencer PORT MAP(
+--    SA_Seq: SA_Sequencer PORT MAP(
     
-    INTERN_CLK => INTERN_CLK,
-    RESET => RESET,
-    USE_SWITCH => SA_USE_SWITCH,
-    SA_PXL_ADDR => SA_PXL_ADDR,
-    ROW_SWITCH=> SA_ROW_SWITCH,
-    COL_SWITCH=> SA_COL_SWITCH,
-    SA_ROW_OUT=> SA_ROW_OUT,
-    SA_COL_OUT=> SA_COL_OUT
+--    INTERN_CLK => INTERN_CLK,
+--    RESET => RESET,
+--    USE_SWITCH => SA_USE_SWITCH,
+--    SA_PXL_ADDR => SA_PXL_ADDR,
+--    ROW_SWITCH=> SA_ROW_SWITCH,
+--    COL_SWITCH=> SA_COL_SWITCH,
+--    SA_ROW_OUT=> SA_ROW_OUT,
+--    SA_COL_OUT=> SA_COL_OUT
 
-    );
+--    );
     
     --Instantiate a UART, and SPI for a UART-SPI Bridge
     
@@ -292,6 +292,7 @@ BEGIN
             DAC_DAT_VAL <= '0';
             DAC_DAT_REG <= (others => '0');
             wait_cycle <= 8000;
+            THRESH_SET <='0';
         --Collects 32 bit value from UART, sends to SPI Module
         --Primary Handler for USB Communication to DAC
         --Data Packets are 8 + 32
@@ -313,9 +314,9 @@ BEGIN
                               SA_USE_SWITCH <= '1';
                         ELSIF UART_REG(3 downto 0) = "0001" THEN -- USE UART PIXEL SELECTION
                                 -- first four bits
-                                SA_PXL_ADDR<=UART_REG(7 downto 4);
-                                SA_USE_SWITCH <= '0';
-                                bridgeState <= S_RESET;
+                            SA_PXL_ADDR<=UART_REG(7 downto 4);
+                            SA_USE_SWITCH <= '0';
+                            bridgeState <= S_RESET;
                         ELSIF UART_REG(3 downto 0) = "0100" THEN -- LARGE ARRAY SELECT
                             bridgeState <=LA_READ0;
                             LARGE_ARRAY_ENABLE <= '0';
@@ -324,8 +325,10 @@ BEGIN
                             LARGE_ARRAY_ENABLE <= '0';
                         ELSIF UART_REG(3 downto 0) = "1001" THEN --program threshold
                             -- first four bits again
-                            UART_REG(7 downto 4)
-                        
+                            THRESH_VAL(3 downto 0) <= signed(UART_REG(7 downto 4));
+                            THRESH_VAL(7 downto 4) <= "0000";
+                            THRESH_SET<='1';
+                            bridgeState <= SPI_WAIT;
                         END IF;
                     
                     END IF;
@@ -397,6 +400,7 @@ BEGIN
                     DAC_DAT_REG <= (others => '0');
                     DAC_DAT_VAL <= '0';
                     UART_DAC_STATE<= "00";
+                    THRESH_SET<='0';
            END CASE;       
         END IF;
     

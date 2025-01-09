@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="7,261.975000 us"></ZoomStartTime>
-      <ZoomEndTime time="7,299.175001 us"></ZoomEndTime>
-      <Cursor1Time time="7,293.125000 us"></Cursor1Time>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="10.000000001 ms"></ZoomEndTime>
+      <Cursor1Time time="6.353685000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="66"></NameColumnWidth>
-      <ValueColumnWidth column_width="115"></ValueColumnWidth>
+      <NameColumnWidth column_width="166"></NameColumnWidth>
+      <ValueColumnWidth column_width="88"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="28" />
+   <WVObjectSize size="32" />
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/CLK">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -136,5 +136,22 @@
    <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/SPEAK">
       <obj_property name="ElementShortName">SPEAK</obj_property>
       <obj_property name="ObjectShortName">SPEAK</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/trigger_threshold">
+      <obj_property name="ElementShortName">trigger_threshold[7:0]</obj_property>
+      <obj_property name="ObjectShortName">trigger_threshold[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/topMetalSequencer_tb/DUT/CLK_SEQ/THRESH_VAL">
+      <obj_property name="ElementShortName">THRESH_VAL[7:0]</obj_property>
+      <obj_property name="ObjectShortName">THRESH_VAL[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/topMetalSequencer_tb/DUT/bridgeState">
+      <obj_property name="ElementShortName">bridgeState</obj_property>
+      <obj_property name="ObjectShortName">bridgeState</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/topMetalSequencer_tb/DUT/THRESH_SET">
+      <obj_property name="ElementShortName">THRESH_SET</obj_property>
+      <obj_property name="ObjectShortName">THRESH_SET</obj_property>
    </wvobject>
 </wave_config>
