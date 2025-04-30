@@ -5,7 +5,7 @@
 <!-- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.        -->
 
 <hwsession version="1" minor="2">
-  <device name="xc7a35t_0" gui_info="dashboard1=hw_ila_1[xc7a35t_0/hw_ila_1/Settings=ILA_SETTINGS_1;xc7a35t_0/hw_ila_1/Status=ILA_STATUS_1;xc7a35t_0/hw_ila_1/Trigger Setup=ILA_TRIGGER_1;xc7a35t_0/hw_ila_1/Waveform=ILA_WAVE_1;xc7a35t_0/hw_ila_1/Capture Setup=ILA_CAPTURE_1;]"/>
+  <device name="xc7a35t_0" gui_info="dashboard1=hw_ila_2[xc7a35t_0/hw_ila_2/Capture Setup=ILA_CAPTURE_1;xc7a35t_0/hw_ila_2/Trigger Setup=ILA_TRIGGER_1;xc7a35t_0/hw_ila_2/Waveform=ILA_WAVE_1;xc7a35t_0/hw_ila_2/Settings=ILA_SETTINGS_1;xc7a35t_0/hw_ila_2/Status=ILA_STATUS_1;],dashboard2=hw_ila_1[xc7a35t_0/hw_ila_1/Settings=ILA_SETTINGS_1;xc7a35t_0/hw_ila_1/Status=ILA_STATUS_1;xc7a35t_0/hw_ila_1/Trigger Setup=ILA_TRIGGER_1;xc7a35t_0/hw_ila_1/Waveform=ILA_WAVE_1;xc7a35t_0/hw_ila_1/Capture Setup=ILA_CAPTURE_1;]"/>
   <ObjectList object_type="hw_cfgmem" gui_info="">
     <Object name="" gui_info="">
       <Properties Property="PROGRAM.ADDRESS_RANGE" value="use_file"/>
@@ -40,8 +40,20 @@
       <Properties Property="CONTROL.WINDOW_COUNT" value="1"/>
       <Properties Property="CORE_REFRESH_RATE_MS" value="500"/>
     </Object>
+    <Object name="u_ila_0" gui_info="">
+      <Properties Property="CONTROL.DATA_DEPTH" value="1024"/>
+      <Properties Property="CONTROL.TRIGGER_CONDITION" value="AND"/>
+      <Properties Property="CONTROL.TRIGGER_POSITION" value="31"/>
+      <Properties Property="CONTROL.WINDOW_COUNT" value="1"/>
+      <Properties Property="CORE_REFRESH_RATE_MS" value="500"/>
+    </Object>
   </ObjectList>
   <ObjectList object_type="hw_probe" gui_info="">
+    <Object name="CLK_SEQ/ADC_IN[7:0]" gui_info=""/>
+    <Object name="CLK_SEQ/TRIGGER_OUT" gui_info=""/>
+    <Object name="CLK_SEQ/diff[7:0]" gui_info=""/>
+    <Object name="CLK_SEQ/pxl_addr[31:0]" gui_info="Trigger Setup=0"/>
+    <Object name="CLK_SEQ/pxl_addr_next[31:0]" gui_info=""/>
     <Object name="LA_ROW_SHIFT_BUF" gui_info=""/>
     <Object name="LA_UART_REG[15:0]" gui_info="Trigger Setup=0"/>
   </ObjectList>
@@ -49,6 +61,267 @@
     <Object name="XADC" gui_info="dashboard_1=[TEMPERATURE=-65281;SCAN_RATE=1000;TRACK_TIME=1;]"/>
   </ObjectList>
   <probeset name="hw project" active="false">
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="UNSIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe0[7:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/ADC_IN[7]"/>
+        <net name="CLK_SEQ/ADC_IN[6]"/>
+        <net name="CLK_SEQ/ADC_IN[5]"/>
+        <net name="CLK_SEQ/ADC_IN[4]"/>
+        <net name="CLK_SEQ/ADC_IN[3]"/>
+        <net name="CLK_SEQ/ADC_IN[2]"/>
+        <net name="CLK_SEQ/ADC_IN[1]"/>
+        <net name="CLK_SEQ/ADC_IN[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="net" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq1&apos;bX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="HEX"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe7[0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq1&apos;bX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/TRIGGER_OUT"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="UNSIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe5[7:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/adc_in_buf_2[7]"/>
+        <net name="CLK_SEQ/adc_in_buf_2[6]"/>
+        <net name="CLK_SEQ/adc_in_buf_2[5]"/>
+        <net name="CLK_SEQ/adc_in_buf_2[4]"/>
+        <net name="CLK_SEQ/adc_in_buf_2[3]"/>
+        <net name="CLK_SEQ/adc_in_buf_2[2]"/>
+        <net name="CLK_SEQ/adc_in_buf_2[1]"/>
+        <net name="CLK_SEQ/adc_in_buf_2[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="UNSIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe3[7:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/adc_val_prev_frame[7]"/>
+        <net name="CLK_SEQ/adc_val_prev_frame[6]"/>
+        <net name="CLK_SEQ/adc_val_prev_frame[5]"/>
+        <net name="CLK_SEQ/adc_val_prev_frame[4]"/>
+        <net name="CLK_SEQ/adc_val_prev_frame[3]"/>
+        <net name="CLK_SEQ/adc_val_prev_frame[2]"/>
+        <net name="CLK_SEQ/adc_val_prev_frame[1]"/>
+        <net name="CLK_SEQ/adc_val_prev_frame[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq8&apos;hXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="SIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe4[7:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq8&apos;hXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/diff[7]"/>
+        <net name="CLK_SEQ/diff[6]"/>
+        <net name="CLK_SEQ/diff[5]"/>
+        <net name="CLK_SEQ/diff[4]"/>
+        <net name="CLK_SEQ/diff[3]"/>
+        <net name="CLK_SEQ/diff[2]"/>
+        <net name="CLK_SEQ/diff[1]"/>
+        <net name="CLK_SEQ/diff[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="UNSIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe6[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/pxl_addr[31]"/>
+        <net name="CLK_SEQ/pxl_addr[30]"/>
+        <net name="CLK_SEQ/pxl_addr[29]"/>
+        <net name="CLK_SEQ/pxl_addr[28]"/>
+        <net name="CLK_SEQ/pxl_addr[27]"/>
+        <net name="CLK_SEQ/pxl_addr[26]"/>
+        <net name="CLK_SEQ/pxl_addr[25]"/>
+        <net name="CLK_SEQ/pxl_addr[24]"/>
+        <net name="CLK_SEQ/pxl_addr[23]"/>
+        <net name="CLK_SEQ/pxl_addr[22]"/>
+        <net name="CLK_SEQ/pxl_addr[21]"/>
+        <net name="CLK_SEQ/pxl_addr[20]"/>
+        <net name="CLK_SEQ/pxl_addr[19]"/>
+        <net name="CLK_SEQ/pxl_addr[18]"/>
+        <net name="CLK_SEQ/pxl_addr[17]"/>
+        <net name="CLK_SEQ/pxl_addr[16]"/>
+        <net name="CLK_SEQ/pxl_addr[15]"/>
+        <net name="CLK_SEQ/pxl_addr[14]"/>
+        <net name="CLK_SEQ/pxl_addr[13]"/>
+        <net name="CLK_SEQ/pxl_addr[12]"/>
+        <net name="CLK_SEQ/pxl_addr[11]"/>
+        <net name="CLK_SEQ/pxl_addr[10]"/>
+        <net name="CLK_SEQ/pxl_addr[9]"/>
+        <net name="CLK_SEQ/pxl_addr[8]"/>
+        <net name="CLK_SEQ/pxl_addr[7]"/>
+        <net name="CLK_SEQ/pxl_addr[6]"/>
+        <net name="CLK_SEQ/pxl_addr[5]"/>
+        <net name="CLK_SEQ/pxl_addr[4]"/>
+        <net name="CLK_SEQ/pxl_addr[3]"/>
+        <net name="CLK_SEQ/pxl_addr[2]"/>
+        <net name="CLK_SEQ/pxl_addr[1]"/>
+        <net name="CLK_SEQ/pxl_addr[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="UNSIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe2[31:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/pxl_addr_next[31]"/>
+        <net name="CLK_SEQ/pxl_addr_next[30]"/>
+        <net name="CLK_SEQ/pxl_addr_next[29]"/>
+        <net name="CLK_SEQ/pxl_addr_next[28]"/>
+        <net name="CLK_SEQ/pxl_addr_next[27]"/>
+        <net name="CLK_SEQ/pxl_addr_next[26]"/>
+        <net name="CLK_SEQ/pxl_addr_next[25]"/>
+        <net name="CLK_SEQ/pxl_addr_next[24]"/>
+        <net name="CLK_SEQ/pxl_addr_next[23]"/>
+        <net name="CLK_SEQ/pxl_addr_next[22]"/>
+        <net name="CLK_SEQ/pxl_addr_next[21]"/>
+        <net name="CLK_SEQ/pxl_addr_next[20]"/>
+        <net name="CLK_SEQ/pxl_addr_next[19]"/>
+        <net name="CLK_SEQ/pxl_addr_next[18]"/>
+        <net name="CLK_SEQ/pxl_addr_next[17]"/>
+        <net name="CLK_SEQ/pxl_addr_next[16]"/>
+        <net name="CLK_SEQ/pxl_addr_next[15]"/>
+        <net name="CLK_SEQ/pxl_addr_next[14]"/>
+        <net name="CLK_SEQ/pxl_addr_next[13]"/>
+        <net name="CLK_SEQ/pxl_addr_next[12]"/>
+        <net name="CLK_SEQ/pxl_addr_next[11]"/>
+        <net name="CLK_SEQ/pxl_addr_next[10]"/>
+        <net name="CLK_SEQ/pxl_addr_next[9]"/>
+        <net name="CLK_SEQ/pxl_addr_next[8]"/>
+        <net name="CLK_SEQ/pxl_addr_next[7]"/>
+        <net name="CLK_SEQ/pxl_addr_next[6]"/>
+        <net name="CLK_SEQ/pxl_addr_next[5]"/>
+        <net name="CLK_SEQ/pxl_addr_next[4]"/>
+        <net name="CLK_SEQ/pxl_addr_next[3]"/>
+        <net name="CLK_SEQ/pxl_addr_next[2]"/>
+        <net name="CLK_SEQ/pxl_addr_next[1]"/>
+        <net name="CLK_SEQ/pxl_addr_next[0]"/>
+      </nets>
+    </probe>
+    <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
+      <probeOptions Id="DebugProbeParams">
+        <Option Id="CAPTURE_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="COMPARE_VALUE.0" value="eq4&apos;hX"/>
+        <Option Id="DISPLAY_AS_ENUM" value="1"/>
+        <Option Id="DISPLAY_HINT" value=""/>
+        <Option Id="DISPLAY_RADIX" value="UNSIGNED"/>
+        <Option Id="DISPLAY_VISIBILITY" value=""/>
+        <Option Id="HW_ILA" value="hw_ila_2"/>
+        <Option Id="LINK_TO_WAVEFORM" value="1"/>
+        <Option Id="MAP" value="probe1[3:0]"/>
+        <Option Id="NAME.CUSTOM" value=""/>
+        <Option Id="NAME.SELECT" value="Long"/>
+        <Option Id="SOURCE" value="netlist"/>
+        <Option Id="TRIGGER_COMPARE_VALUE" value="eq4&apos;hX"/>
+        <Option Id="WAVEFORM_STYLE" value="Digital"/>
+      </probeOptions>
+      <nets>
+        <net name="CLK_SEQ/trigger_threshold[3]"/>
+        <net name="CLK_SEQ/trigger_threshold[2]"/>
+        <net name="CLK_SEQ/trigger_threshold[1]"/>
+        <net name="CLK_SEQ/trigger_threshold[0]"/>
+      </nets>
+    </probe>
     <probe type="ila" busType="bus" source="netlist" spec="ILA_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="CAPTURE_COMPARE_VALUE" value="eq32&apos;hXXXX_XXXX"/>

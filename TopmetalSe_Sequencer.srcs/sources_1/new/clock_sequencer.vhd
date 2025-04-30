@@ -121,7 +121,7 @@ BEGIN
    pxl_addr_stdvec <= std_logic_vector(to_unsigned(pxl_addr,14));
    pxl_addr_next_stdvec <= std_logic_vector(to_unsigned(pxl_addr_next,14));
    
-   adc_in_buf <= adc_in;
+   --adc_in_buf <= adc_in;
    
    TRIGGER_OUT <= TRIGGER_BUF;
    
@@ -260,13 +260,16 @@ BEGIN
         IF trigger_buf = '1' THEN
             trigger_buf <= '0';
         END IF;
+        adc_in_buf <= adc_in;
         adc_in_buf_2 <= adc_in_buf;
         adc_val_prev_frame <= unsigned(bram_out);
         
         --compare
-        diff <= signed(adc_in_buf_2 - adc_val_prev_frame);
+        diff <= signed(adc_val_prev_frame - adc_in_buf_2);
         IF diff > trigger_threshold THEN
-            trigger_buf <= '1'; -- trigger out comes 2 clock cycles later
+            IF pxl_addr /= 5845 THEN --hot pixel line
+                trigger_buf <= '1'; -- trigger out comes 2 clock cycles later
+            END IF;
         END IF;
         
     END IF;

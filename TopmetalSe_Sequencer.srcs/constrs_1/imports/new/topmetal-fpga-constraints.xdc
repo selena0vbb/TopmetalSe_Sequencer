@@ -141,7 +141,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {led[15]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports SPI_SCLK]
 #Sch name = JA4
 set_property PACKAGE_PIN G2 [get_ports EXTERN_CLK]
-	set_property IOSTANDARD LVCMOS33 [get_ports EXTERN_CLK]
+set_property IOSTANDARD LVCMOS33 [get_ports EXTERN_CLK]
 #Sch name = JA7
 #set_property PACKAGE_PIN H1 [get_ports TM_RST_S]
 #	set_property IOSTANDARD LVCMOS33 [get_ports TM_RST_S]
@@ -150,28 +150,28 @@ set_property PACKAGE_PIN G2 [get_ports EXTERN_CLK]
 #	set_property IOSTANDARD LVCMOS33 [get_ports GND]
 ##Sch name = JA9
 set_property PACKAGE_PIN H2 [get_ports TRIG_OUT]
-	set_property IOSTANDARD LVCMOS33 [get_ports TRIG_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports TRIG_OUT]
 ##Sch name = JA10
 set_property PACKAGE_PIN G3 [get_ports FRAME_START]
-	set_property IOSTANDARD LVCMOS33 [get_ports FRAME_START]
+set_property IOSTANDARD LVCMOS33 [get_ports FRAME_START]
 
 
 ##Pmod Header JC
 #Sch name = JC1
 # ADC trigger settings
-set_property PACKAGE_PIN A14 [get_ports {SPI_SYNC}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SPI_SYNC}]
+set_property PACKAGE_PIN A14 [get_ports SPI_SYNC]
+set_property IOSTANDARD LVCMOS33 [get_ports SPI_SYNC]
 #Sch name = JC2
-set_property PACKAGE_PIN B15 [get_ports {SPI_SCLK}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SPI_SCLK}]
+set_property PACKAGE_PIN A15 [get_ports SPI_SCLK]
+set_property IOSTANDARD LVCMOS33 [get_ports SPI_SCLK]
 #Sch name = JC3
-set_property PACKAGE_PIN A16 [get_ports {SPI_OUT}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SPI_OUT}]
+set_property PACKAGE_PIN A16 [get_ports SPI_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports SPI_OUT]
 #Sch name = JC4
 #set_property PACKAGE_PIN A17 [get_ports {SA_COL_OUT[1]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {SA_COL_OUT[1]}]
 #Sch name = JC7
-#set_property PACKAGE_PIN B15 [get_ports {SA_ROW_OUT[2]}]
+#set_property PACKAGE_PIN B15 [get_kports {SA_ROW_OUT[2]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {SA_ROW_OUT[2]}]
 
 #set_property PACKAGE_PIN C15 [get_ports {SA_COL_OUT[2]}]
@@ -220,55 +220,55 @@ set_property IOSTANDARD LVCMOS33 [get_ports LA_COL_CLK]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {trigger_adc[1]}]
 
 # ADC trigger settings
-#set_property PACKAGE_PIN K17 [get_ports {ADC_VAL[6]}]					
+#set_property PACKAGE_PIN K17 [get_ports {ADC_VAL[6]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[6]}]
 ##Sch name = JC2
-#set_property PACKAGE_PIN M18 [get_ports {ADC_VAL[4]}]					
+#set_property PACKAGE_PIN M18 [get_ports {ADC_VAL[4]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[4]}]
 ##Sch name = JC3
-#set_property PACKAGE_PIN N17 [get_ports {ADC_VAL[2]}]					
+#set_property PACKAGE_PIN N17 [get_ports {ADC_VAL[2]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[2]}]
 ##Sch name = JC4
-#set_property PACKAGE_PIN P18 [get_ports {ADC_VAL[0]}]					
+#set_property PACKAGE_PIN P18 [get_ports {ADC_VAL[0]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[0]}]
 ##Sch name = JC7
-#set_property PACKAGE_PIN L17 [get_ports {ADC_VAL[7]}]					
+#set_property PACKAGE_PIN L17 [get_ports {ADC_VAL[7]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[7]}]
 ##Sch name = JC8
-#set_property PACKAGE_PIN M19 [get_ports {ADC_VAL[5]}]					
+#set_property PACKAGE_PIN M19 [get_ports {ADC_VAL[5]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[5]}]
 ##Sch name = JC9
-#set_property PACKAGE_PIN P17 [get_ports {ADC_VAL[3]}]					
+#set_property PACKAGE_PIN P17 [get_ports {ADC_VAL[3]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[3]}]
 ##Sch name = JC10
-#set_property PACKAGE_PIN R18 [get_ports {ADC_VAL[1]}]					
+#set_property PACKAGE_PIN R18 [get_ports {ADC_VAL[1]}]
 #	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[1]}]
 
 #Pmod Header JXADC
 #Sch name = XA1_P
 set_property PACKAGE_PIN J3 [get_ports {ADC_VAL[6]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[6]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[6]}]
 ##Sch name = XA2_P
 set_property PACKAGE_PIN L3 [get_ports {ADC_VAL[4]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[4]}]
 ##Sch name = XA3_P
 set_property PACKAGE_PIN M2 [get_ports {ADC_VAL[2]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[2]}]
 ##Sch name = XA4_P
-set_property PACKAGE_PIN N2 [get_ports ADC_VAL[0]]
-set_property IOSTANDARD LVCMOS33 [get_ports ADC_VAL[0]]
+set_property PACKAGE_PIN N2 [get_ports {ADC_VAL[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[0]}]
 ##Sch name = XA1_N
 set_property PACKAGE_PIN K3 [get_ports {ADC_VAL[7]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[7]}]
 ##Sch name = XA2_N
 set_property PACKAGE_PIN M3 [get_ports {ADC_VAL[5]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[5]}]
 ##Sch name = XA3_N
 set_property PACKAGE_PIN M1 [get_ports {ADC_VAL[3]}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[3]}]
 ##Sch name = XA4_N
 set_property PACKAGE_PIN N1 [get_ports {ADC_VAL[1]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {ADC_VAL[1]}]
 
 
 
@@ -433,6 +433,8 @@ set_property MARK_DEBUG true [get_nets {CLK_SEQ/ADC_IN[4]}]
 set_property MARK_DEBUG true [get_nets {CLK_SEQ/ADC_IN[5]}]
 set_property MARK_DEBUG true [get_nets {CLK_SEQ/ADC_IN[6]}]
 set_property MARK_DEBUG true [get_nets {CLK_SEQ/ADC_IN[7]}]
+
+set_property MARK_DEBUG true [get_nets CLK_SEQ/TRIGGER_OUT]
 create_debug_core u_ila_0 ila
 set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
 set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
@@ -453,8 +455,8 @@ set_property port_width 4 [get_debug_ports u_ila_0/probe1]
 connect_debug_port u_ila_0/probe1 [get_nets [list {CLK_SEQ/trigger_threshold[0]} {CLK_SEQ/trigger_threshold[1]} {CLK_SEQ/trigger_threshold[2]} {CLK_SEQ/trigger_threshold[3]}]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe2]
-set_property port_width 8 [get_debug_ports u_ila_0/probe2]
-connect_debug_port u_ila_0/probe2 [get_nets [list {CLK_SEQ/adc_in_buf_2[0]} {CLK_SEQ/adc_in_buf_2[1]} {CLK_SEQ/adc_in_buf_2[2]} {CLK_SEQ/adc_in_buf_2[3]} {CLK_SEQ/adc_in_buf_2[4]} {CLK_SEQ/adc_in_buf_2[5]} {CLK_SEQ/adc_in_buf_2[6]} {CLK_SEQ/adc_in_buf_2[7]}]]
+set_property port_width 32 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list {CLK_SEQ/pxl_addr_next[0]} {CLK_SEQ/pxl_addr_next[1]} {CLK_SEQ/pxl_addr_next[2]} {CLK_SEQ/pxl_addr_next[3]} {CLK_SEQ/pxl_addr_next[4]} {CLK_SEQ/pxl_addr_next[5]} {CLK_SEQ/pxl_addr_next[6]} {CLK_SEQ/pxl_addr_next[7]} {CLK_SEQ/pxl_addr_next[8]} {CLK_SEQ/pxl_addr_next[9]} {CLK_SEQ/pxl_addr_next[10]} {CLK_SEQ/pxl_addr_next[11]} {CLK_SEQ/pxl_addr_next[12]} {CLK_SEQ/pxl_addr_next[13]} {CLK_SEQ/pxl_addr_next[14]} {CLK_SEQ/pxl_addr_next[15]} {CLK_SEQ/pxl_addr_next[16]} {CLK_SEQ/pxl_addr_next[17]} {CLK_SEQ/pxl_addr_next[18]} {CLK_SEQ/pxl_addr_next[19]} {CLK_SEQ/pxl_addr_next[20]} {CLK_SEQ/pxl_addr_next[21]} {CLK_SEQ/pxl_addr_next[22]} {CLK_SEQ/pxl_addr_next[23]} {CLK_SEQ/pxl_addr_next[24]} {CLK_SEQ/pxl_addr_next[25]} {CLK_SEQ/pxl_addr_next[26]} {CLK_SEQ/pxl_addr_next[27]} {CLK_SEQ/pxl_addr_next[28]} {CLK_SEQ/pxl_addr_next[29]} {CLK_SEQ/pxl_addr_next[30]} {CLK_SEQ/pxl_addr_next[31]}]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe3]
 set_property port_width 8 [get_debug_ports u_ila_0/probe3]
@@ -465,12 +467,16 @@ set_property port_width 8 [get_debug_ports u_ila_0/probe4]
 connect_debug_port u_ila_0/probe4 [get_nets [list {CLK_SEQ/diff[0]} {CLK_SEQ/diff[1]} {CLK_SEQ/diff[2]} {CLK_SEQ/diff[3]} {CLK_SEQ/diff[4]} {CLK_SEQ/diff[5]} {CLK_SEQ/diff[6]} {CLK_SEQ/diff[7]}]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe5]
-set_property port_width 32 [get_debug_ports u_ila_0/probe5]
-connect_debug_port u_ila_0/probe5 [get_nets [list {CLK_SEQ/pxl_addr[0]} {CLK_SEQ/pxl_addr[1]} {CLK_SEQ/pxl_addr[2]} {CLK_SEQ/pxl_addr[3]} {CLK_SEQ/pxl_addr[4]} {CLK_SEQ/pxl_addr[5]} {CLK_SEQ/pxl_addr[6]} {CLK_SEQ/pxl_addr[7]} {CLK_SEQ/pxl_addr[8]} {CLK_SEQ/pxl_addr[9]} {CLK_SEQ/pxl_addr[10]} {CLK_SEQ/pxl_addr[11]} {CLK_SEQ/pxl_addr[12]} {CLK_SEQ/pxl_addr[13]} {CLK_SEQ/pxl_addr[14]} {CLK_SEQ/pxl_addr[15]} {CLK_SEQ/pxl_addr[16]} {CLK_SEQ/pxl_addr[17]} {CLK_SEQ/pxl_addr[18]} {CLK_SEQ/pxl_addr[19]} {CLK_SEQ/pxl_addr[20]} {CLK_SEQ/pxl_addr[21]} {CLK_SEQ/pxl_addr[22]} {CLK_SEQ/pxl_addr[23]} {CLK_SEQ/pxl_addr[24]} {CLK_SEQ/pxl_addr[25]} {CLK_SEQ/pxl_addr[26]} {CLK_SEQ/pxl_addr[27]} {CLK_SEQ/pxl_addr[28]} {CLK_SEQ/pxl_addr[29]} {CLK_SEQ/pxl_addr[30]} {CLK_SEQ/pxl_addr[31]}]]
+set_property port_width 8 [get_debug_ports u_ila_0/probe5]
+connect_debug_port u_ila_0/probe5 [get_nets [list {CLK_SEQ/adc_in_buf_2[0]} {CLK_SEQ/adc_in_buf_2[1]} {CLK_SEQ/adc_in_buf_2[2]} {CLK_SEQ/adc_in_buf_2[3]} {CLK_SEQ/adc_in_buf_2[4]} {CLK_SEQ/adc_in_buf_2[5]} {CLK_SEQ/adc_in_buf_2[6]} {CLK_SEQ/adc_in_buf_2[7]}]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe6]
 set_property port_width 32 [get_debug_ports u_ila_0/probe6]
-connect_debug_port u_ila_0/probe6 [get_nets [list {CLK_SEQ/pxl_addr_next[0]} {CLK_SEQ/pxl_addr_next[1]} {CLK_SEQ/pxl_addr_next[2]} {CLK_SEQ/pxl_addr_next[3]} {CLK_SEQ/pxl_addr_next[4]} {CLK_SEQ/pxl_addr_next[5]} {CLK_SEQ/pxl_addr_next[6]} {CLK_SEQ/pxl_addr_next[7]} {CLK_SEQ/pxl_addr_next[8]} {CLK_SEQ/pxl_addr_next[9]} {CLK_SEQ/pxl_addr_next[10]} {CLK_SEQ/pxl_addr_next[11]} {CLK_SEQ/pxl_addr_next[12]} {CLK_SEQ/pxl_addr_next[13]} {CLK_SEQ/pxl_addr_next[14]} {CLK_SEQ/pxl_addr_next[15]} {CLK_SEQ/pxl_addr_next[16]} {CLK_SEQ/pxl_addr_next[17]} {CLK_SEQ/pxl_addr_next[18]} {CLK_SEQ/pxl_addr_next[19]} {CLK_SEQ/pxl_addr_next[20]} {CLK_SEQ/pxl_addr_next[21]} {CLK_SEQ/pxl_addr_next[22]} {CLK_SEQ/pxl_addr_next[23]} {CLK_SEQ/pxl_addr_next[24]} {CLK_SEQ/pxl_addr_next[25]} {CLK_SEQ/pxl_addr_next[26]} {CLK_SEQ/pxl_addr_next[27]} {CLK_SEQ/pxl_addr_next[28]} {CLK_SEQ/pxl_addr_next[29]} {CLK_SEQ/pxl_addr_next[30]} {CLK_SEQ/pxl_addr_next[31]}]]
+connect_debug_port u_ila_0/probe6 [get_nets [list {CLK_SEQ/pxl_addr[0]} {CLK_SEQ/pxl_addr[1]} {CLK_SEQ/pxl_addr[2]} {CLK_SEQ/pxl_addr[3]} {CLK_SEQ/pxl_addr[4]} {CLK_SEQ/pxl_addr[5]} {CLK_SEQ/pxl_addr[6]} {CLK_SEQ/pxl_addr[7]} {CLK_SEQ/pxl_addr[8]} {CLK_SEQ/pxl_addr[9]} {CLK_SEQ/pxl_addr[10]} {CLK_SEQ/pxl_addr[11]} {CLK_SEQ/pxl_addr[12]} {CLK_SEQ/pxl_addr[13]} {CLK_SEQ/pxl_addr[14]} {CLK_SEQ/pxl_addr[15]} {CLK_SEQ/pxl_addr[16]} {CLK_SEQ/pxl_addr[17]} {CLK_SEQ/pxl_addr[18]} {CLK_SEQ/pxl_addr[19]} {CLK_SEQ/pxl_addr[20]} {CLK_SEQ/pxl_addr[21]} {CLK_SEQ/pxl_addr[22]} {CLK_SEQ/pxl_addr[23]} {CLK_SEQ/pxl_addr[24]} {CLK_SEQ/pxl_addr[25]} {CLK_SEQ/pxl_addr[26]} {CLK_SEQ/pxl_addr[27]} {CLK_SEQ/pxl_addr[28]} {CLK_SEQ/pxl_addr[29]} {CLK_SEQ/pxl_addr[30]} {CLK_SEQ/pxl_addr[31]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe7]
+set_property port_width 1 [get_debug_ports u_ila_0/probe7]
+connect_debug_port u_ila_0/probe7 [get_nets [list CLK_SEQ/TRIGGER_OUT]]
 set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
 set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
 set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]

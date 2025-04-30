@@ -1,6 +1,6 @@
 module shift_register
   #(
-    parameter REG_DEPTH = 100
+    parameter REG_DEPTH = 15
     )
    (
 //`ifdef USE_POWER_PINS
